@@ -23,9 +23,9 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#FFD700", // Vibrant Yellow
-                        "background-light": "#f8f6f6",
-                        "background-dark": "#221610",
+                        "primary": "#ffe413",
+                        "background-light": "#565658",
+                        "background-dark": "#000000",
                     },
                     fontFamily: {
                         "display": ["Public Sans", "sans-serif"]
@@ -38,6 +38,33 @@
     <style>
         body {
             font-family: 'Public Sans', sans-serif;
+            background-color: #565658;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #ffe413 !important;
+        }
+
+        p,
+        li,
+        span,
+        a,
+        label,
+        input,
+        textarea,
+        button {
+            color: #ffffff !important;
+        }
+
+        header nav a,
+        header .flex.items-center.gap-3 a,
+        header .flex.items-center.gap-3 button {
+            color: #ffe413 !important;
         }
 
         .hero-gradient {
@@ -45,7 +72,7 @@
         }
 
         .text-gradient {
-            background: linear-gradient(90deg, #FFD700, #ffb300);
+            background: linear-gradient(90deg, #ffe413, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -64,8 +91,15 @@
             backface-visibility: hidden;
         }
 
+        .flip-card-front {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
         .flip-card-back {
             transform: rotateY(180deg);
+            background-color: #ffe413;
+            color: #000000;
         }
 
         .google-sans-heading {
@@ -90,23 +124,23 @@
             <nav
                 class="hidden md:flex items-center gap-6 bg-slate-100 dark:bg-slate-800 px-6 py-2 rounded-full text-sm font-semibold">
 
-                <a href="#" class="text-slate-500 hover:text-black dark:hover:text-white transition">
+                <a href="#" class="text-primary hover:text-primary/80 transition">
                     Clean Energy
                 </a>
 
-                <a href="#" class="text-slate-500 hover:text-black dark:hover:text-white transition">
+                <a href="#" class="text-primary hover:text-primary/80 transition">
                     Consulting
                 </a>
 
-                <a href="#" class="text-slate-500 hover:text-black dark:hover:text-white transition">
+                <a href="#" class="text-primary hover:text-primary/80 transition">
                     Solar Power
                 </a>
 
-                <a href="#" class="text-slate-500 hover:text-black dark:hover:text-white transition">
+                <a href="#" class="text-primary hover:text-primary/80 transition">
                     Wind Turbine
                 </a>
 
-                <a href="#" class="text-slate-500 hover:text-black dark:hover:text-white transition">
+                <a href="#" class="text-primary hover:text-primary/80 transition">
                     Pricing
                 </a>
 
@@ -116,11 +150,11 @@
             <div class="flex items-center gap-3">
 
                 <a href="#"
-                    class="text-sm px-4 py-1 rounded-full bg-black text-white hover:scale-105 transition">
+                    class="text-sm px-4 py-1 rounded-full bg-black text-primary hover:scale-105 transition">
                     Get in Touch
                 </a>
 
-                <button class="text-sm px-4 py-1 rounded-full bg-black text-white hover:scale-105 transition">
+                <button class="text-sm px-4 py-1 rounded-full bg-black text-primary hover:scale-105 transition">
                     Join Us
                 </button>
 
@@ -137,29 +171,29 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl">
                 <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8 uppercase google-sans-heading">
-                    Powering a <br /><span class="text-primary text-yellow-400">Brighter</span> Future
+                    Powering a <br /><span class="text-primary">Brighter</span> Future
                 </h1>
                 <div class="flex flex-wrap gap-6 mb-12">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">check_circle</span>
-                        <span class="text-lg font-bold text-yellow-400 uppercase tracking-tight italic">Lower energy
+                        <span class="text-lg font-bold text-primary uppercase tracking-tight italic">Lower energy
                             bill</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">eco</span>
-                        <span class="text-lg font-bold text-yellow-400 uppercase tracking-tight italic">Green Energy</span>
+                        <span class="text-lg font-bold text-primary uppercase tracking-tight italic">Green Energy</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">support_agent</span>
-                        <span class="text-lg font-bold text-yellow-400 uppercase tracking-tight italic">24/7 support</span>
+                        <span class="text-lg font-bold text-primary uppercase tracking-tight italic">24/7 support</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-8">
-                    <a class="bg-primary hover:bg-primary/90 text-yellow-400 px-10 py-5 rounded-none font-black uppercase tracking-widest transition-all text-center"
+                    <a class="bg-primary hover:bg-primary/90 text-black px-10 py-5 rounded-none font-black uppercase tracking-widest transition-all text-center"
                         href="#">
                         Discover Solutions
                     </a>
-                    <a class="text-yellow-400 font-bold uppercase tracking-widest flex items-center gap-2 group" href="#">
+                    <a class="text-primary font-bold uppercase tracking-widest flex items-center gap-2 group" href="#">
                         Watch Process
                         <span
                             class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -169,7 +203,7 @@
         </div>
     </section>
     <!-- Introduction / Value Prop -->
-    <section class="py-24 bg-white dark:bg-background-dark overflow-hidden">
+    <section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="relative">
@@ -271,7 +305,7 @@
         </div>
     </section>
     <!-- Strategic Partnership Section (Flip Cards) -->
-    <section class="py-24 bg-slate-50 dark:bg-slate-900/50">
+    <section class="py-24 bg-background-light dark:bg-slate-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20">
                 <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 dark:text-white">Strategic Partnerships
@@ -284,14 +318,14 @@
                     <div
                         class="flip-card-inner relative w-full h-full text-center transition-transform duration-500 shadow-xl">
                         <div
-                            class="flip-card-front absolute w-full h-full bg-white dark:bg-background-dark p-10 flex flex-col justify-center items-center border border-slate-200 dark:border-slate-800">
-                            <span class="material-symbols-outlined text-6xl text-primary mb-6">handshake</span>
-                            <h3 class="text-2xl font-black uppercase mb-4">Commercial Operations</h3>
-                            <p class="text-slate-500 uppercase text-xs font-bold tracking-widest">Hover to explore</p>
+                            class="flip-card-front absolute w-full h-full bg-black p-10 flex flex-col justify-center items-center border border-slate-700 text-white">
+                            <span class="material-symbols-outlined text-6xl text-white mb-6">handshake</span>
+                            <h3 class="text-2xl font-black uppercase mb-4 text-white">Commercial Operations</h3>
+                            <p class="text-slate-300 uppercase text-xs font-bold tracking-widest">Hover to explore</p>
                         </div>
                         <div
-                            class="flip-card-back absolute w-full h-full bg-primary p-10 flex flex-col justify-center items-center text-white">
-                            <h3 class="text-2xl font-black uppercase mb-4">End-to-End Excellence</h3>
+                            class="flip-card-back absolute w-full h-full bg-primary p-10 flex flex-col justify-center items-center text-black">
+                            <h3 class="text-2xl font-black uppercase mb-4 text-black">End-to-End Excellence</h3>
                             <p class="font-medium leading-relaxed">We handle the complexity of commercial energy
                                 systems, allowing you to focus on your core business growth and sustainability goals.
                             </p>
@@ -303,14 +337,14 @@
                     <div
                         class="flip-card-inner relative w-full h-full text-center transition-transform duration-500 shadow-xl">
                         <div
-                            class="flip-card-front absolute w-full h-full bg-white dark:bg-background-dark p-10 flex flex-col justify-center items-center border border-slate-200 dark:border-slate-800">
-                            <span class="material-symbols-outlined text-6xl text-primary mb-6">dynamic_feed</span>
-                            <h3 class="text-2xl font-black uppercase mb-4">Asset Management</h3>
-                            <p class="text-slate-500 uppercase text-xs font-bold tracking-widest">Hover to explore</p>
+                            class="flip-card-front absolute w-full h-full bg-black p-10 flex flex-col justify-center items-center border border-slate-700 text-white">
+                            <span class="material-symbols-outlined text-6xl text-white mb-6">dynamic_feed</span>
+                            <h3 class="text-2xl font-black uppercase mb-4 text-white">Asset Management</h3>
+                            <p class="text-slate-300 uppercase text-xs font-bold tracking-widest">Hover to explore</p>
                         </div>
                         <div
-                            class="flip-card-back absolute w-full h-full bg-primary p-10 flex flex-col justify-center items-center text-white">
-                            <h3 class="text-2xl font-black uppercase mb-4">Maximized ROI</h3>
+                            class="flip-card-back absolute w-full h-full bg-primary p-10 flex flex-col justify-center items-center text-black">
+                            <h3 class="text-2xl font-black uppercase mb-4 text-black">Maximized ROI</h3>
                             <p class="font-medium leading-relaxed">Lifecycle management for high-impact utility assets
                                 ensures maximum uptime and performance for every dollar invested.</p>
                         </div>
@@ -321,14 +355,14 @@
                     <div
                         class="flip-card-inner relative w-full h-full text-center transition-transform duration-500 shadow-xl">
                         <div
-                            class="flip-card-front absolute w-full h-full bg-white dark:bg-background-dark p-10 flex flex-col justify-center items-center border border-slate-200 dark:border-slate-800">
-                            <span class="material-symbols-outlined text-6xl text-primary mb-6">monitoring</span>
-                            <h3 class="text-2xl font-black uppercase mb-4">Data Analytics</h3>
-                            <p class="text-slate-500 uppercase text-xs font-bold tracking-widest">Hover to explore</p>
+                            class="flip-card-front absolute w-full h-full bg-black p-10 flex flex-col justify-center items-center border border-slate-700 text-white">
+                            <span class="material-symbols-outlined text-6xl text-white mb-6">monitoring</span>
+                            <h3 class="text-2xl font-black uppercase mb-4 text-white">Data Analytics</h3>
+                            <p class="text-slate-300 uppercase text-xs font-bold tracking-widest">Hover to explore</p>
                         </div>
                         <div
-                            class="flip-card-back absolute w-full h-full bg-primary p-10 flex flex-col justify-center items-center text-white">
-                            <h3 class="text-2xl font-black uppercase mb-4">Actionable Insights</h3>
+                            class="flip-card-back absolute w-full h-full bg-primary p-10 flex flex-col justify-center items-center text-black">
+                            <h3 class="text-2xl font-black uppercase mb-4 text-black">Actionable Insights</h3>
                             <p class="font-medium leading-relaxed">Real-time monitoring and advanced predictive modeling
                                 to prevent energy waste before it hits your bottom line.</p>
                         </div>
@@ -338,7 +372,7 @@
         </div>
     </section>
     <!-- Detailed Services -->
-    <section class="py-24 bg-white dark:bg-background-dark">
+    <section class="py-24 bg-background-light dark:bg-background-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
             <!-- Consulting -->
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -407,11 +441,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                 <div class="col-span-1 lg:col-span-1">
-                    <div class="flex items-center gap-2 mb-8">
-                        <div class="text-primary">
-                            <span class="material-symbols-outlined text-4xl font-bold">bolt</span>
-                        </div>
-                        <span class="text-2xl font-black tracking-tighter uppercase">NZ Essentials</span>
+                    <div class="flex items-center mb-8">
+                        <img src="logonz.png" alt="NZ Essentials Logo" class="h-28 w-auto object-contain" />
                     </div>
                     <p class="text-slate-500 leading-relaxed mb-6">
                         Powering a sustainable future through innovation, integrity, and integrated utility solutions
