@@ -19,6 +19,14 @@ const Header = () => {
     navigate('/contact');
   };
 
+  const navLinks = [
+    { label: 'Clean Energy', href: '#clean-energy' },
+    { label: 'Consulting', href: '#consulting' },
+    { label: 'Solar Power', href: '#solar' },
+    { label: 'Wind Turbine', href: '#wind' },
+    { label: 'Pricing', href: '#pricing' }
+  ];
+
   return (
     <motion.header
       className={`header ${scrolled ? 'scrolled' : ''}`}
@@ -26,26 +34,34 @@ const Header = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="flex items-center" style={{ height: '4rem' }}>
-        <img
-          src="/assets/logonz.png"
-          alt="NZ Essentials Logo"
-          className="header-logo"
-          style={{ transform: 'scale(1.4)', transformOrigin: 'left' }}
-        />
-      </div>
+      <div className="header-container">
+        {/* Logo */}
+        <a href="/" className="header-logo-link">
+          <img
+            src="/assets/logonz2.svg"
+            alt="NZ Essentials"
+            className="header-logo"
+          />
+        </a>
 
-      <nav className="header-nav">
-        <a href="#clean-energy">Clean Energy</a>
-        <a href="#consulting">Consulting</a>
-        <a href="#solar">Solar Power</a>
-        <a href="#wind">Wind Turbine</a>
-        <a href="#pricing">Pricing</a>
-      </nav>
+        {/* Navigation */}
+        <nav className="header-nav">
+          {navLinks.map((link, index) => (
+            <a key={index} href={link.href} className="header-nav-link">
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
-      <div className="header-buttons">
-        <a href="#contact" className="btn btn-secondary">Get in Touch</a>
-        <button className="btn btn-secondary" onClick={handleJoinClick}>Join Us</button>
+        {/* Buttons */}
+        <div className="header-buttons">
+          <a href="#contact" className="header-btn header-btn-outline">
+            Get in Touch
+          </a>
+          <button className="header-btn header-btn-primary" onClick={handleJoinClick}>
+            Join Us
+          </button>
+        </div>
       </div>
     </motion.header>
   );

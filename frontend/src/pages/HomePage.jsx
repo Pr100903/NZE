@@ -1,7 +1,7 @@
 import {
   Hero,
-  MissionSection,
-  SolutionsSection,
+  WhatWeDoSection,
+  EnergyBrokerageSection,
   PartnershipsSection,
   ServicesSection
 } from '../components';
@@ -10,8 +10,8 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <MissionSection />
-      <SolutionsSection />
+      <WhatWeDoSection />
+      <EnergyBrokerageSection />
       <PartnershipsSection />
       <ServicesSection />
     </>

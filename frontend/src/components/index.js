@@ -4,6 +4,8 @@ export { default as MissionSection } from './MissionSection';
 export { default as SolutionsSection } from './SolutionsSection';
 export { default as PartnershipsSection } from './PartnershipsSection';
 export { default as ServicesSection } from './ServicesSection';
+export { default as WhatWeDoSection } from './WhatWeDoSection';
+export { default as EnergyBrokerageSection } from './EnergyBrokerageSection';
 export { default as Footer } from './Footer';
 export { default as AnimatedSection } from './AnimatedSection';
 export { default as ContactForm } from './ContactForm';

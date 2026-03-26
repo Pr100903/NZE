@@ -1,17 +1,25 @@
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 
 const Hero = () => {
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
+  // Mouse parallax
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const videoX = useSpring(useTransform(mouseX, [0, 1], [-15, 15]), springConfig);
+  const videoY = useSpring(useTransform(mouseY, [0, 1], [-15, 15]), springConfig);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start']
   });
 
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
@@ -21,59 +29,106 @@ const Hero = () => {
     }
   }, []);
 
+  // Mouse move handler for parallax
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    mouseX.set(clientX / innerWidth);
+    mouseY.set(clientY / innerHeight);
+  };
+
+  // Stagger animation for container
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
+        staggerChildren: 0.12,
+        delayChildren: 0.2
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.7,
         ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
+  // Character stagger for "BRIGHTER"
+  const brighterText = "Brighter";
+  const letterVariants = {
+    hidden: { opacity: 0, y: 50, rotateX: -90 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0.8 + i * 0.05,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    })
+  };
+
   const features = [
-    { icon: 'check_circle', text: 'Lower energy bill' },
-    { icon: 'eco', text: 'Green Energy' },
-    { icon: 'support_agent', text: '24/7 support' }
+    { icon: 'check_circle', text: 'Lower energy bill', animation: 'bounce' },
+    { icon: 'check_circle', text: 'Green Energy', animation: 'pulse' },
+    { icon: 'check_circle', text: '24/7 support', animation: 'rotate' }
+  ];
+
+  const trustLogos = [
+    'Trusted by 500+ businesses',
+    'ISO 14001 Certified',
+    'Carbon Neutral Partner'
   ];
 
   return (
-    <section ref={sectionRef} className="hero-section">
-      {/* Video Background */}
-      <video
-        ref={videoRef}
-        className="hero-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        onLoadedData={() => setVideoLoaded(true)}
+    <section
+      ref={sectionRef}
+      className="hero-section"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Video Background with Parallax */}
+      <motion.div
+        className="hero-video-wrapper"
         style={{
-          opacity: videoLoaded ? 0.7 : 0,
-          transition: 'opacity 1s ease-in-out'
+          x: videoX,
+          y: videoY,
+          scale: 1.1
         }}
       >
-        <source src="/assets/Hero.webm" type="video/webm" />
-      </video>
+        <video
+          ref={videoRef}
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          style={{
+            opacity: videoLoaded ? 1 : 0,
+            transition: 'opacity 1.5s ease-in-out'
+          }}
+        >
+          <source src="/assets/Hero.webm" type="video/webm" />
+        </video>
+      </motion.div>
 
-      {/* Gradient Overlay */}
+      {/* Premium Gradient Overlay */}
       <div className="hero-overlay" />
 
-      {/* Content */}
+      {/* Subtle vignette */}
+      <div className="hero-vignette" />
+
+      {/* Content - Left Side */}
       <motion.div
         className="hero-content"
         style={{ y: textY, opacity }}
@@ -81,54 +136,113 @@ const Hero = () => {
         initial="hidden"
         animate="visible"
       >
-        <div style={{ maxWidth: '800px' }}>
-          <motion.h1 className="hero-title" variants={itemVariants}>
-            Powering a <br />
-            <span>Brighter</span> Future
-          </motion.h1>
+        <div className="hero-text-container">
+          {/* Main Title with Character Animation */}
+          <motion.div variants={itemVariants}>
+            <h1 className="hero-title">
+              <span className="hero-title-line">Powering</span>
+              <span className="hero-title-line">a <span className="hero-title-highlight">
+                {brighterText.split('').map((char, i) => (
+                  <motion.span
+                    key={i}
+                    custom={i}
+                    variants={letterVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="hero-letter"
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span></span>
+              <span className="hero-title-line">Future</span>
+            </h1>
+          </motion.div>
 
+          {/* Feature Pills with Micro Animations */}
           <motion.div className="hero-features" variants={itemVariants}>
             {features.map((feature, index) => (
-              <div key={index} className="hero-feature">
-                <span className="material-symbols-outlined">{feature.icon}</span>
-                <span style={{ fontStyle: 'italic' }}>{feature.text}</span>
-              </div>
+              <motion.div
+                key={index}
+                className={`hero-feature hero-feature-${feature.animation}`}
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.span
+                  className={`material-symbols-outlined hero-icon hero-icon-${feature.animation}`}
+                  animate={
+                    feature.animation === 'bounce'
+                      ? { y: [0, -3, 0] }
+                      : feature.animation === 'pulse'
+                      ? { scale: [1, 1.15, 1], opacity: [1, 0.8, 1] }
+                      : { rotate: [0, 10, -10, 0] }
+                  }
+                  transition={{
+                    repeat: Infinity,
+                    duration: feature.animation === 'rotate' ? 2 : 1.5,
+                    ease: "easeInOut"
+                  }}
+                >
+                  {feature.icon}
+                </motion.span>
+                <span>{feature.text}</span>
+              </motion.div>
             ))}
           </motion.div>
 
+          {/* Premium CTA Buttons */}
           <motion.div className="hero-buttons" variants={itemVariants}>
-            <a href="#solutions" className="btn btn-primary btn-large">
-              Discover Solutions
-            </a>
-            <a href="#process" className="btn-link">
-              Watch Process
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </a>
+            <motion.a
+              href="#solutions"
+              className="hero-btn-primary"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span>Discover Solutions</span>
+            </motion.a>
+            <motion.a
+              href="#process"
+              className="hero-btn-link"
+              whileHover="hover"
+            >
+              <span>Watch Process</span>
+              <motion.span
+                className="material-symbols-outlined"
+                variants={{
+                  hover: { x: 5, transition: { duration: 0.2 } }
+                }}
+              >
+                arrow_forward
+              </motion.span>
+            </motion.a>
+          </motion.div>
+
+          {/* Trust Strip */}
+          <motion.div
+            className="hero-trust-strip"
+            variants={itemVariants}
+          >
+            {trustLogos.map((text, index) => (
+              <div key={index} className="trust-item">
+                <span className="material-symbols-outlined">verified</span>
+                <span>{text}</span>
+              </div>
+            ))}
           </motion.div>
         </div>
       </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div
-        style={{
-          position: 'absolute',
-          bottom: '2rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 10
-        }}
+        className="scroll-indicator"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
+        transition={{ delay: 2, duration: 0.6 }}
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-          style={{ color: 'var(--primary)', textAlign: 'center' }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         >
-          <span className="material-symbols-outlined" style={{ fontSize: '2rem' }}>
-            keyboard_arrow_down
-          </span>
+          <span className="material-symbols-outlined">keyboard_arrow_down</span>
         </motion.div>
       </motion.div>
     </section>
