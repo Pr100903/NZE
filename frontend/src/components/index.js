@@ -6,3 +6,4 @@ export { default as PartnershipsSection } from './PartnershipsSection';
 export { default as ServicesSection } from './ServicesSection';
 export { default as Footer } from './Footer';
 export { default as AnimatedSection } from './AnimatedSection';
+export { default as ContactForm } from './ContactForm';

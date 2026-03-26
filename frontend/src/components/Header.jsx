@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +14,10 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleJoinClick = () => {
+    navigate('/contact');
+  };
 
   return (
     <motion.header
@@ -39,7 +45,7 @@ const Header = () => {
 
       <div className="header-buttons">
         <a href="#contact" className="btn btn-secondary">Get in Touch</a>
-        <button className="btn btn-secondary">Join Us</button>
+        <button className="btn btn-secondary" onClick={handleJoinClick}>Join Us</button>
       </div>
     </motion.header>
   );
