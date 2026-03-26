@@ -1,5 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+/* Visby CF Bold Font */
+@font-face {
+  font-family: 'Visby CF';
+  src: url('/fonts/VisbyCF-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --primary: #ffe413;
@@ -19,7 +28,7 @@ html {
 }
 
 body {
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Anek Latin', sans-serif;
   background-color: var(--gray);
   color: var(--white);
   overflow-x: hidden;
@@ -27,6 +36,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Visby CF', 'Anek Latin', sans-serif;
   color: var(--primary);
 }
 
@@ -1578,7 +1588,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.4rem;
   background: #ffffff;
   color: var(--black);
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Anek Latin', sans-serif;
   font-size: 0.9rem;
   transition: all 0.25s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
