@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const Footer = () => {
@@ -12,11 +13,11 @@ const Footer = () => {
   ];
 
   const companyLinks = [
-    { label: 'About Us', href: '#about' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Privacy Policy', href: '#privacy' },
-    { label: 'Terms of Service', href: '#terms' }
-  ];
+  { label: 'About Us', href: '#about' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Privacy Policy', href: '/privacy-policy', isRoute: true },
+  { label: 'Terms of Service', href: '#terms' }
+];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,7 +72,11 @@ const Footer = () => {
               <ul className="footer-links">
                 {companyLinks.map((link, index) => (
                   <li key={index}>
-                    <a href={link.href}>{link.label}</a>
+                    {link.isRoute ? (
+                      <Link to={link.href}>{link.label}</Link>
+                    ) : (
+                      <a href={link.href}>{link.label}</a>
+                    )}
                   </li>
                 ))}
               </ul>

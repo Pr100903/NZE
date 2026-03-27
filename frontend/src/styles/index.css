@@ -1821,3 +1821,159 @@ h1, h2, h3, h4, h5, h6 {
     font-size: clamp(2rem, 4vw, 3rem);
   }
 }
+
+/* Privacy Policy Page */
+.privacy-policy {
+  padding: 6rem 2rem 4rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  border-bottom: 2px solid rgba(255, 228, 19, 0.3);
+}
+
+.privacy-header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.privacy-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+}
+
+.privacy-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.privacy-section {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 228, 19, 0.2);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.privacy-section:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 228, 19, 0.4);
+}
+
+.privacy-section h2 {
+  font-size: 1.75rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.privacy-section p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.privacy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-section a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.privacy-section a:hover {
+  color: #ffed4e;
+  text-decoration: underline;
+}
+
+.privacy-rights-list {
+  list-style: none;
+  margin: 1.5rem 0 2rem 0;
+  padding: 0;
+}
+
+.privacy-rights-list li {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.privacy-rights-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.privacy-contact {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 228, 19, 0.1) 0%, rgba(255, 228, 19, 0.05) 100%);
+  border: 1px solid rgba(255, 228, 19, 0.3);
+}
+
+.contact-email {
+  display: inline-block;
+  color: var(--primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 228, 19, 0.1);
+  border: 2px solid var(--primary);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.contact-email:hover {
+  background: var(--primary);
+  color: var(--black);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .privacy-policy {
+    padding: 2rem 1rem;
+  }
+
+  .privacy-header {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .privacy-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .privacy-section {
+    padding: 1.5rem;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.35rem;
+  }
+
+  .privacy-rights-list li {
+    padding-left: 1.75rem;
+  }
+}
