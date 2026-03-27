@@ -1,19 +1,23 @@
 import {
   Hero,
+  TrustedBySection,
+  ServicesGridSection,
+  PowerBillSection,
   WhatWeDoSection,
   EnergyBrokerageSection,
-  PartnershipsSection,
-  ServicesSection
+  PartnershipsSection
 } from '../components';
 
 const HomePage = () => {
   return (
     <>
       <Hero />
+      <TrustedBySection />
+      <ServicesGridSection />
+      <PowerBillSection />
       <WhatWeDoSection />
       <EnergyBrokerageSection />
       <PartnershipsSection />
-      <ServicesSection />
     </>
   );
 };

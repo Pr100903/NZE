@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,12 +20,48 @@ const Header = () => {
     navigate('/contact');
   };
 
+  const handleNavClick = (e, link) => {
+    e.preventDefault();
+
+    // If it's a page link (starts with /), navigate to it
+    if (link.href.startsWith('/')) {
+      navigate(link.href);
+      return;
+    }
+
+    // If it's a hash link
+    const targetId = link.href.replace('#', '');
+
+    // If we're on home page, scroll to the section
+    if (location.pathname === '/') {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home page and then to the section
+      navigate('/', { state: { scrollTo: targetId } });
+    }
+  };
+
+  // Handle scrolling after navigation
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
   const navLinks = [
-    { label: 'About Us', href: '#about_us' },
+    { label: 'About Us', href: '/about' },
     { label: 'Services', href: '#services' },
     { label: 'Clients', href: '#clients' },
-    { label: 'Partners', href: '#partners' },
-    { label: 'Blogs', href: '#blogs' }
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Blogs', href: '/blog' }
   ];
 
   return (
@@ -36,7 +73,7 @@ const Header = () => {
     >
       <div className="header-container">
         {/* Logo */}
-        <a href="/" className="header-logo-link">
+        <a href="/" className="header-logo-link" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
           <img
             src="/assets/logonz2.svg"
             alt="NZ Essentials"
@@ -47,7 +84,12 @@ const Header = () => {
         {/* Navigation */}
         <nav className="header-nav">
           {navLinks.map((link, index) => (
-            <a key={index} href={link.href} className="header-nav-link">
+            <a
+              key={index}
+              href={link.href}
+              className="header-nav-link"
+              onClick={(e) => handleNavClick(e, link)}
+            >
               {link.label}
             </a>
           ))}
@@ -55,7 +97,7 @@ const Header = () => {
 
         {/* Buttons */}
         <div className="header-buttons">
-          <a href="#contact" className="header-btn header-btn-outline">
+          <a href="/contact" className="header-btn header-btn-outline" onClick={(e) => { e.preventDefault(); navigate('/contact'); }}>
             Get in Touch
           </a>
           <button className="header-btn header-btn-primary" onClick={handleJoinClick}>

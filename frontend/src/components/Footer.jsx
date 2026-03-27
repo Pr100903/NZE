@@ -6,17 +6,17 @@ const Footer = () => {
   const [email, setEmail] = useState('');
 
   const solutionLinks = [
-    { label: 'Clean Energy', href: '#clean-energy' },
-    { label: 'Consulting', href: '#consulting' },
-    { label: 'Solar Power', href: '#solar' },
-    { label: 'Wind Turbine', href: '#wind' }
+    { label: 'Electricity', href: '/#services' },
+    { label: 'Gas', href: '/#services' },
+    { label: 'Mobile & Broadband', href: '/#services' },
+    { label: 'Solar & EV', href: '/#services' }
   ];
 
   const companyLinks = [
-  { label: 'About Us', href: '#about' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Privacy Policy', href: '/privacy-policy', isRoute: true },
-  { label: 'Terms of Service', href: '#terms' }
+  { label: 'About Us', href: '/about', isRoute: true },
+  { label: 'FAQ', href: '/faq', isRoute: true },
+  { label: 'Blog', href: '/blog', isRoute: true },
+  { label: 'Privacy Policy', href: '/privacy-policy', isRoute: true }
 ];
 
   const handleSubmit = (e) => {

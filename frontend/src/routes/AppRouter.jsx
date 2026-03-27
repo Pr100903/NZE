@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { MainLayout } from '../layouts';
-import { AboutPage, ContactPage, HomePage, ServicesPage, PrivacyPolicy } from '../pages';
+import { AboutPage, ContactPage, HomePage, ServicesPage, PrivacyPolicy, FAQPage, BlogPage } from '../pages';
 
 const AppRouter = () => {
   return (
@@ -11,6 +11,8 @@ const AppRouter = () => {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </MainLayout>

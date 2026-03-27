@@ -61,8 +61,8 @@ const Hero = () => {
     }
   };
 
-  // Character stagger for "BRIGHTER"
-  const brighterText = "Brighter";
+  // Character stagger for highlight text
+  const highlightText = "Maximum";
   const letterVariants = {
     hidden: { opacity: 0, y: 50, rotateX: -90 },
     visible: (i) => ({
@@ -78,15 +78,15 @@ const Hero = () => {
   };
 
   const features = [
-    { icon: 'check_circle', text: 'Lower energy bill', animation: 'bounce' },
-    { icon: 'check_circle', text: 'Green Energy', animation: 'pulse' },
-    { icon: 'check_circle', text: '24/7 support', animation: 'rotate' }
+    { icon: 'savings', text: 'Lower Energy Bills', animation: 'bounce' },
+    { icon: 'support_agent', text: '24/7 Support', animation: 'pulse' },
+    { icon: 'hub', text: 'Unified Connectivity', animation: 'rotate' }
   ];
 
   const trustLogos = [
+    'Official One.nz Partner',
     'Trusted by 500+ businesses',
-    'ISO 14001 Certified',
-    'Carbon Neutral Partner'
+    '5% Admin Fee Only'
   ];
 
   return (
@@ -118,7 +118,7 @@ const Hero = () => {
             transition: 'opacity 1.5s ease-in-out'
           }}
         >
-          <source src="/assets/Hero.webm" type="video/webm" />
+          <source src="/assets/Hero.mp4" type="video/mp4" />
         </video>
       </motion.div>
 
@@ -140,9 +140,10 @@ const Hero = () => {
           {/* Main Title with Character Animation */}
           <motion.div variants={itemVariants}>
             <h1 className="hero-title">
-              <span className="hero-title-line">Powering</span>
-              <span className="hero-title-line">a <span className="hero-title-highlight">
-                {brighterText.split('').map((char, i) => (
+              <span className="hero-title-line">One Connection.</span>
+              <span className="hero-title-line">Zero Hassle.</span>
+              <span className="hero-title-line"><span className="hero-title-highlight">
+                {highlightText.split('').map((char, i) => (
                   <motion.span
                     key={i}
                     custom={i}
@@ -154,8 +155,7 @@ const Hero = () => {
                     {char}
                   </motion.span>
                 ))}
-              </span></span>
-              <span className="hero-title-line">Future</span>
+              </span> Savings.</span>
             </h1>
           </motion.div>
 
