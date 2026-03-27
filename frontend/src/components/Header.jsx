@@ -20,11 +20,11 @@ const Header = () => {
   };
 
   const navLinks = [
-    { label: 'Clean Energy', href: '#clean-energy' },
-    { label: 'Consulting', href: '#consulting' },
-    { label: 'Solar Power', href: '#solar' },
-    { label: 'Wind Turbine', href: '#wind' },
-    { label: 'Pricing', href: '#pricing' }
+    { label: 'About Us', href: '#about_us' },
+    { label: 'Services', href: '#services' },
+    { label: 'Clients', href: '#clients' },
+    { label: 'Partners', href: '#partners' },
+    { label: 'Blogs', href: '#blogs' }
   ];
 
   return (
