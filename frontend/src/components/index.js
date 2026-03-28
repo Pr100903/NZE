@@ -12,6 +12,7 @@ export { default as TrustedBySection } from './TrustedBySection';
 export { default as TrustedBrands } from './TrustedBrands';
 export { default as FAQSection } from './FAQSection';
 export { default as BlogSection } from './BlogSection';
+export { default as RetailersSection } from './retailers_section';
 export { default as Footer } from './Footer';
 export { default as AnimatedSection } from './AnimatedSection';
 export { default as ContactForm } from './ContactForm';

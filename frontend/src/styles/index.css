@@ -3508,6 +3508,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .logo-marquee-item {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  height: 70px;
 }
 
 .brand-logo-placeholder {
@@ -3531,6 +3536,61 @@ h1, h2, h3, h4, h5, h6 {
 .brand-logo-placeholder:hover {
   background: rgba(255, 228, 19, 0.08);
   border-color: rgba(255, 228, 19, 0.4);
+  color: var(--primary);
+}
+
+.brand-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(0%);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.logo-marquee-item:hover .brand-logo-img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.logo-marquee-item[data-brand="Mercury"] .brand-logo-img {
+  transform: scale(1.6);
+}
+
+/* ============================================
+   RETAILERS SECTION
+   ============================================ */
+
+.retailers-section {
+  padding: 4rem 0;
+  background: var(--black);
+  overflow: hidden;
+}
+
+.retailers-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.retailers-label {
+  color: var(--primary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.retailers-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.retailers-title span {
   color: var(--primary);
 }
 
