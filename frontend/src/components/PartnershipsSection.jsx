@@ -1,8 +1,17 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
 
-const FlipCard = ({ icon, title, backTitle, description, delay }) => {
+const FlipCard = ({ icon, title, challenge, impact, result, delay }) => {
+  // Extract savings amounts from result text for highlighting
+  const highlightSavings = (text) => {
+    return text.split(/(\$[\d,]+)/g).map((part, index) => {
+      if (part.match(/\$[\d,]+/)) {
+        return <span key={index} className="highlight-savings">{part}</span>;
+      }
+      return part;
+    });
+  };
+
   return (
     <motion.div
       className="flip-card"
@@ -24,10 +33,17 @@ const FlipCard = ({ icon, title, backTitle, description, delay }) => {
           </p>
         </div>
         <div className="flip-card-back">
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 900, textTransform: 'uppercase', marginBottom: '1rem' }}>
-            {backTitle}
-          </h3>
-          <p style={{ lineHeight: 1.7 }}>{description}</p>
+          <div className="flip-card-story">
+            <p className="story-section">
+              <span className="story-label challenge">The Challenge:</span> {challenge}
+            </p>
+            <p className="story-section">
+              <span className="story-label impact">Our Impact:</span> {impact}
+            </p>
+            <p className="story-section">
+              <span className="story-label result">The Result:</span> {highlightSavings(result)}
+            </p>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -37,22 +53,25 @@ const FlipCard = ({ icon, title, backTitle, description, delay }) => {
 const PartnershipsSection = () => {
   const cards = [
     {
-      icon: 'handshake',
-      title: 'Commercial Operations',
-      backTitle: 'End-to-End Excellence',
-      description: 'We handle the complexity of commercial energy systems, allowing you to focus on your core business growth and sustainability goals.'
+      icon: 'local_pizza',
+      title: 'HOSPITALITY',
+      challenge: 'Constant oven use and refrigeration were driving up peak-time energy costs.',
+      impact: 'Secured a fixed-term electricity rate and high-speed One.nz business broadband.',
+      result: '$2,800 net annual savings and zero downtime for online ordering systems.'
     },
     {
-      icon: 'dynamic_feed',
-      title: 'Asset Management',
-      backTitle: 'Maximized ROI',
-      description: 'Lifecycle management for high-impact utility assets ensures maximum uptime and performance for every dollar invested.'
+      icon: 'monitor_heart',
+      title: 'HEALTHCARE',
+      challenge: 'Constant 24/7 power requirements for medical equipment led to high, inflexible electricity costs.',
+      impact: 'Negotiated a high-usage electricity tariff specifically for healthcare facilities, locking in lower rates for the long term.',
+      result: '$12,500 saved annually. Combined with our 24/7 Support, the facility gained budget certainty and operational peace of mind.'
     },
     {
-      icon: 'monitoring',
-      title: 'Data Analytics',
-      backTitle: 'Actionable Insights',
-      description: 'Real-time monitoring and advanced predictive modeling to prevent energy waste before it hits your bottom line.'
+      icon: 'shopping_cart',
+      title: 'RETAIL',
+      challenge: 'Complex multi-site billing and heavy refrigeration loads were difficult to manage.',
+      impact: 'Consolidated all accounts and locked in long-term prices to avoid market spikes.',
+      result: '$7,200 saved per site annually and 15+ hours of monthly admin work eliminated.'
     }
   ];
 
@@ -61,10 +80,12 @@ const PartnershipsSection = () => {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
           <AnimatedSection>
-            <h2 className="section-title">Strategic Partnerships</h2>
+            <h2 className="section-title">The Proof is in the Profit.</h2>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <div style={{ width: '6rem', height: '4px', background: 'var(--primary)', margin: '1rem auto' }} />
+            <p className="section-description" style={{ margin: '1.5rem auto 0' }}>
+              Explore our success stories across hospitality, retail, and healthcare.
+            </p>
           </AnimatedSection>
         </div>
 

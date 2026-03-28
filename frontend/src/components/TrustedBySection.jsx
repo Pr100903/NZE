@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
 
 const TrustedBySection = () => {
-  // Placeholder logos - these will be replaced with actual SVGs later
+  // Use actual logos from assets/logos folder
   const logos = [
-    { name: "Domino's", placeholder: true },
-    { name: 'Bikanervala', placeholder: true },
-    { name: 'FreshChoice', placeholder: true },
-    { name: 'Liquorland', placeholder: true },
-    { name: 'Thirsty Liquor', placeholder: true },
-    { name: 'Dementia Care', placeholder: true },
+    { name: "Domino's", src: '/assets/logos/Dominos.svg.png', type: 'png' },
+    { name: 'Woolworths', src: '/assets/logos/ww.svg', type: 'svg' },
+    { name: 'Liquorland', src: '/assets/logos/LiquorLandNZ.svg.png', type: 'png' },
+    { name: 'Thirsty Liquor', src: '/assets/logos/TL_FULL.svg', type: 'svg' },
+    { name: 'Umm', src: '/assets/logos/umm.png', type: 'png' },
+    { name: 'Woolworths Alt', src: '/assets/logos/ww.png', type: 'png' },
   ];
 
   // Double the logos for seamless infinite scroll
@@ -36,13 +36,7 @@ const TrustedBySection = () => {
         <div className="marquee-track">
           {duplicatedLogos.map((logo, index) => (
             <div key={index} className="marquee-item">
-              {logo.placeholder ? (
-                <div className="logo-placeholder">
-                  <span>{logo.name}</span>
-                </div>
-              ) : (
-                <img src={logo.src} alt={logo.name} className="logo-img" />
-              )}
+              <img src={logo.src} alt={logo.name} className="logo-img" />
             </div>
           ))}
         </div>

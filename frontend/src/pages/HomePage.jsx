@@ -3,8 +3,6 @@ import {
   TrustedBySection,
   ServicesGridSection,
   PowerBillSection,
-  WhatWeDoSection,
-  EnergyBrokerageSection,
   PartnershipsSection
 } from '../components';
 
@@ -15,8 +13,6 @@ const HomePage = () => {
       <TrustedBySection />
       <ServicesGridSection />
       <PowerBillSection />
-      <WhatWeDoSection />
-      <EnergyBrokerageSection />
       <PartnershipsSection />
     </>
   );
