@@ -118,7 +118,7 @@ const Hero = () => {
             transition: 'opacity 1.5s ease-in-out'
           }}
         >
-          <source src="/assets/Hero.mp4" type="video/mp4" />
+          <source src="/assets/Hero3.webm" type="video/webm" />
         </video>
       </motion.div>
 
