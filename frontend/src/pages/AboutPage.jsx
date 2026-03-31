@@ -92,13 +92,11 @@ const AboutPage = () => {
           <div className="about-grid reverse">
             <AnimatedSection direction="left">
               <div className="leader-card">
-                <div className="leader-image-placeholder">
-                  <span className="material-symbols-outlined">person</span>
-                </div>
-                <div className="leader-info">
-                  <h3>Vipin Yadav</h3>
-                  <span className="leader-role">Founder & CEO</span>
-                </div>
+                <img
+                  src="/assets/map.png"
+                  alt="Service area map"
+                  className="leader-map-image"
+                />
               </div>
             </AnimatedSection>
 
