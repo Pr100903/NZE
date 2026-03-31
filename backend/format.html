@@ -1,171 +1,190 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                yellow: '#ffe413',
+                gray: '#565658',
+                black: '#000000',
+                white: '#ffffff'
+              }
+            },
+            fontSize: {
+              'xxs': '0.7rem'
+            }
+          }
+        }
+      }
+    </script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
       body {
         font-family: "Open Sans", sans-serif;
+        font-size: 12px;
+      }
+      @media print {
+        body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        @page { margin: 0.5cm; }
       }
     </style>
   </head>
-  <body class="bg-white text-gray-800 p-8">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold">Starting your Analysis</h1>
-        <div class="text-center">
-          <img
-          width="132"
-          height="101"
-          src="data:image/png;base64,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"
-        />
+  <body class="bg-white text-brand-gray m-0 p-0">
+    <!-- Header with Yellow Banner -->
+    <div class="bg-brand-yellow py-3 px-6" style="height: 50px;">
+      <div class="flex justify-between items-center h-full">
+        <div>
+          <h1 class="text-xl font-bold text-brand-black">Letter of Authority</h1>
+          <p class="text-brand-gray text-xs">Energy Audit & Management Services</p>
         </div>
+        <img width="100" height="75" src="logonz.png" alt="NZ Essentials Logo" style="object-fit: contain; margin-top: -10px; margin-bottom: -10px;" />
       </div>
-      <table class="w-full text-sm">
+    </div>
+
+    <!-- Terms Section -->
+    <div class="px-6 py-3">
+      <h2 class="text-sm font-bold text-brand-black border-b-2 border-brand-yellow pb-1 mb-2">Terms & Conditions</h2>
+      
+      <table class="w-full border border-gray-300 text-xxs">
         <tbody>
-          <tr class="border-b">
-            <td class="p-2 align-top w-1/2">
-              <strong>1. Form Authorization</strong>
-              <p class="mt-1">
-                I, the undersigned, allow NZ Essentials to access my energy consumption and pricing data, and decline automatic rollovers on my behalf.
-              </p>
+          <tr>
+            <td class="border border-gray-300 p-2 align-top w-1/2 bg-gray-50">
+              <span class="font-bold text-brand-black">1. Form Authorization:</span>
+              <span class="text-brand-gray"> I allow NZ Essentials to access my energy consumption/pricing data, and decline automatic rollovers on my behalf.</span>
             </td>
-            <td class="p-2 align-top w-1/2">
-              <strong>5. No Obligation</strong>
-              <p class="mt-1">
-                I am not required to accept any proposals or quotes presented by NZ Essentials from energy retailers.
-              </p>
+            <td class="border border-gray-300 p-2 align-top w-1/2 bg-gray-50">
+              <span class="font-bold text-brand-black">5. No Obligation:</span>
+              <span class="text-brand-gray"> I am not required to accept any proposals or quotes presented by NZ Essentials from energy retailers.</span>
             </td>
           </tr>
-          <tr class="border-b">
-            <td class="p-2 align-top">
-              <strong>2. Access to Information</strong>
-              <p class="mt-1">
-                NZ Essentials can access my energy account details, including consumption, pricing, contracts, and other relevant information.
-              </p>
+          <tr>
+            <td class="border border-gray-300 p-2 align-top bg-white">
+              <span class="font-bold text-brand-black">2. Access to Information:</span>
+              <span class="text-brand-gray"> NZ Essentials can access my energy account details, including consumption, pricing, contracts, and other relevant information.</span>
             </td>
-            <td class="p-2 align-top">
-              <strong>6. Audit Understanding</strong>
-              <p class="mt-1">
-                NZ Essentials provides the initial audit at their cost. If I don't accept any proposal, I won't use the provided information to obtain supply directly.
-              </p>
+            <td class="border border-gray-300 p-2 align-top bg-white">
+              <span class="font-bold text-brand-black">6. Audit Understanding:</span>
+              <span class="text-brand-gray"> NZ Essentials provides the initial audit at their cost. If I don't accept any proposal, I won't use the provided information to obtain supply directly.</span>
             </td>
           </tr>
-          <tr class="border-b">
-            <td class="p-2 align-top">
-              <strong>3. Renewal Authority</strong>
-              <p class="mt-1">
-                I am authorized to make renewal decisions, make changes, and accept proposals for the entity below after informing the entity.
-              </p>
+          <tr>
+            <td class="border border-gray-300 p-2 align-top bg-gray-50">
+              <span class="font-bold text-brand-black">3. Renewal Authority:</span>
+              <span class="text-brand-gray"> I am authorized to make renewal decisions, make changes, and accept proposals for the entity below after informing the entity.</span>
             </td>
-            <td class="p-2 align-top">
-              <strong>7. Reimbursement Agreement</strong>
-              <p class="mt-1">
-                If I use the information provided to obtain supply, I will reimburse NZ Essentials for any lost revenue.
-              </p>
+            <td class="border border-gray-300 p-2 align-top bg-gray-50">
+              <span class="font-bold text-brand-black">7. Reimbursement Agreement:</span>
+              <span class="text-brand-gray"> If I use the information provided to obtain supply, I will reimburse NZ Essentials for any lost revenue.</span>
             </td>
           </tr>
-          <tr class="border-b">
-            <td class="p-2 align-top">
-              <strong>4. Service Acknowledgement</strong>
-              <p class="mt-1">
-                NZ Essentials provides an independent audit and management service, working on my behalf to obtain tenders from energy retailers.
-              </p>
+          <tr>
+            <td class="border border-gray-300 p-2 align-top bg-white">
+              <span class="font-bold text-brand-black">4. Service Acknowledgement:</span>
+              <span class="text-brand-gray"> NZ Essentials provides an independent audit and management service, working on my behalf to obtain tenders from energy retailers.</span>
             </td>
-            <td class="p-2 align-top">
-              <strong>8. Contract Authorization</strong>
-              <p class="mt-1">
-                If I accept a proposal, NZ Essentials is authorized to sign retailer contracts on my behalf to secure the agreed proposal.
-              </p>
+            <td class="border border-gray-300 p-2 align-top bg-white">
+              <span class="font-bold text-brand-black">8. Contract Authorization:</span>
+              <span class="text-brand-gray"> If I accept a proposal, NZ Essentials is authorized to sign retailer contracts on my behalf to secure the agreed proposal.</span>
             </td>
           </tr>
         </tbody>
       </table>
-      
     </div>
-    <br /><br />
-    <div class="max-w-4xl mx-auto">
-      <table class="w-full text-left">
+
+    <!-- Client Details Section -->
+    <div class="px-6 py-2">
+      <h2 class="text-sm font-bold text-brand-black border-b-2 border-brand-yellow pb-1 mb-2">Client Information</h2>
+      
+      <table class="w-full border border-gray-300 text-xxs">
         <tbody>
           <tr>
-            <td class="p-4 font-bold" colspan="2">Name of Authorised Person</td>
-            <td class="p-4" colspan="2">{{ authorisedPerson }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50 w-1/4">Authorised Person</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray w-1/4">{{ authorisedPerson }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50 w-1/4">Job Title</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray w-1/4">{{ jobTitle }}</td>
           </tr>
           <tr>
-            <td class="p-4 font-bold" colspan="2">Job Title</td>
-            <td class="p-4" colspan="2">{{ jobTitle }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Registered Name</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ registeredName }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Trading Name</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ tradingName }}</td>
           </tr>
           <tr>
-            <td class="p-4 font-bold" colspan="2">
-              Registered Name of the Entity
-            </td>
-            <td class="p-4" colspan="2">{{ registeredName }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Main Contact</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ mainContactName }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Contact Phone</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ mainContactPhone }}</td>
           </tr>
           <tr>
-            <td class="p-4 font-bold" colspan="2">Trading Name (if any)</td>
-            <td class="p-4" colspan="2">{{ tradingName }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Contact Email</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ mainContactEmail }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Interested in Solar?</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ interestedInSolar }}</td>
           </tr>
           <tr>
-            <td class="p-4 font-bold" colspan="2">
-              Name of the Main Contact (if different)
-            </td>
-            <td class="p-4" colspan="2">{{ mainContactName }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Industry Type</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ industryType }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black bg-gray-50">Decision Maker?</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ isDecisionMaker }}</td>
           </tr>
-          <tr>
-            <td class="p-4 font-bold" colspan="2">Main Contact Phone Number</td>
-            <td class="p-4" colspan="2">{{ mainContactPhone }}</td>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Supply Address Section -->
+    <div class="px-6 py-2">
+      <h2 class="text-sm font-bold text-brand-black border-b-2 border-brand-yellow pb-1 mb-2">Supply Address Details</h2>
+      
+      <table class="w-full border border-gray-300 text-xxs">
+        <thead>
+          <tr class="bg-brand-gray text-white">
+            <th class="border border-gray-300 py-1.5 px-2 text-left font-semibold">Electric ICP</th>
+            <th class="border border-gray-300 py-1.5 px-2 text-left font-semibold">Address/Value</th>
+            <th class="border border-gray-300 py-1.5 px-2 text-left font-semibold">Gas ICP</th>
+            <th class="border border-gray-300 py-1.5 px-2 text-left font-semibold">Address/Value</th>
           </tr>
-          <tr>
-            <td class="p-4 font-bold" colspan="2">
-              Main Contact Email Address
-            </td>
-            <td class="p-4" colspan="2">{{ mainContactEmail }}</td>
-          </tr>
-          <tr>
-            <td class="p-4 font-bold" colspan="2">Interested in Solar?</td>
-            <td class="p-4" colspan="2">{{ interestedInSolar }}</td>
-          </tr>
-          <tr>
-            <td class="p-4 font-bold" colspan="2">Industry Type</td>
-            <td class="p-4" colspan="2">{{ industryType }}</td>
-          </tr>
-          <tr>
-            <td class="p-4 font-bold" colspan="2">
-              Is Main Contact Ultimate Decision Maker?
-            </td>
-            <td class="p-4" colspan="2">{{ isDecisionMaker }}</td>
-          </tr>
-          <tr class="border-t-2 border-black">
-            <td class="p-4 font-bold" colspan="2">
-              Signed by the Duly Authorised Person:
-            </td>
-            <td class="p-4" colspan="2"><img src="{{ signatureImage }}" alt="signature" style="width: 200px;"></td>
-          </tr>
-          <tr>
-            <td class="p-4 font-bold" colspan="2">Date:</td>
-            <td class="p-4" colspan="2">{{ signedDate }}</td>
-          </tr>
-          <tr>
-            <td class="p-4 font-bold" colspan="2">
-              Date of Birth of Signatory:
-            </td>
-            <td class="p-4" colspan="2">{{ dobSignatory }}</td>
-          </tr>
-          <!-- Supply Address Section -->
-          <tr class="border-t-2 border-black">
-            <td class="p-4 font-bold" colspan="4">Supply Address:</td>
-          </tr>
+        </thead>
+        <tbody>
           {% for i in range(1, 6) %}
-          <tr>
-            <td class="p-4 font-bold">ICP {{ i }}:</td>
-            <td class="p-4">{{ vars['icp' ~ i] | default('Placeholder') }}</td>
-            <td class="p-4 font-bold">Gas ICP {{ i }}:</td>
-            <td class="p-4">{{ vars['gasIcp' ~ i] | default('Placeholder') }}</td>
+          <tr class="{% if loop.index is odd %}bg-gray-50{% else %}bg-white{% endif %}">
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black">ICP {{ i }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ vars['icp' ~ i] | default('—') }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 font-semibold text-brand-black">Gas ICP {{ i }}</td>
+            <td class="border border-gray-300 py-1.5 px-2 text-brand-gray">{{ vars['gasIcp' ~ i] | default('—') }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-    
+
+    <!-- Signature Section -->
+    <div class="px-6 py-2">
+      <h2 class="text-sm font-bold text-brand-black border-b-2 border-brand-yellow pb-1 mb-2">Authorization Signature</h2>
+      
+      <table class="w-full border-2 border-brand-yellow text-xxs" style="background: linear-gradient(to right, #fffde7, #ffffff);">
+        <tbody>
+          <tr>
+            <td class="border border-brand-yellow py-2 px-3 font-semibold text-brand-black w-1/4">Signature:</td>
+            <td class="border border-brand-yellow py-2 px-3 w-1/4"><img src="{{ signatureImage }}" alt="signature" style="width: 150px; height: auto;"></td>
+            <td class="border border-brand-yellow py-2 px-3 font-semibold text-brand-black w-1/4">Date:</td>
+            <td class="border border-brand-yellow py-2 px-3 text-brand-gray w-1/4">{{ signedDate }}</td>
+          </tr>
+          <tr>
+            <td class="border border-brand-yellow py-2 px-3 font-semibold text-brand-black" colspan="2">Date of Birth of Signatory:</td>
+            <td class="border border-brand-yellow py-2 px-3 text-brand-gray" colspan="2">{{ dobSignatory }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-brand-gray py-2 px-6 mt-2">
+      <p class="text-white text-xs text-center">NZ Essentials — Your Trusted Energy Partner | This document is a legally binding Letter of Authority</p>
     </div>
   </body>
 </html>
