@@ -1,8 +1,8 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 const RetailersSection = () => {
-  // Logos from assets/retailers folder
-  const brands = [
+  const brands = useMemo(() => [
     { name: "Contact", src: '/assets/retailers/contact.svg.png' },
     { name: "Ecotricity", src: '/assets/retailers/ecotricity.png' },
     { name: "Genesis", src: '/assets/retailers/genesis.png' },
@@ -11,10 +11,10 @@ const RetailersSection = () => {
     { name: "Nova", src: '/assets/retailers/nova.svg' },
     { name: "Powershop", src: '/assets/retailers/powershop.png' },
     { name: "Pulseenergy", src: '/assets/retailers/pulseenergy.png' },
-  ];
+  ], []);
 
   // Double the brands for seamless infinite scroll
-  const duplicatedBrands = [...brands, ...brands];
+  const duplicatedBrands = useMemo(() => [...brands, ...brands], [brands]);
 
   return (
     <section className="retailers-section" id="retailers">

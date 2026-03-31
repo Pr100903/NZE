@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const BlogPost3 = () => {
   const navigate = useNavigate();
@@ -154,10 +154,10 @@ const BlogPost3 = () => {
             <div className="blog-cta-box">
               <h3>Ready to Make the Green Transition?</h3>
               <p>Contact us to discuss how we can help your business embrace sustainable energy solutions.</p>
-              <a href="/contact" className="blog-cta-btn">
+              <Link to="/contact" className="blog-cta-btn">
                 Contact Us to Discuss Your Green Transition
                 <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </motion.article>
         </div>

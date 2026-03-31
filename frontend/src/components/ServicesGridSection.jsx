@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const ServicesGridSection = () => {
   const [activeService, setActiveService] = useState(0);
 
-  const services = [
+  const services = useMemo(() => [
     {
       icon: 'bolt',
       title: 'Electricity',
@@ -54,7 +55,11 @@ const ServicesGridSection = () => {
       benefits: ['Fleet charging', 'Customer amenity', 'Future-ready'],
       color: '#6c5ce7'
     }
-  ];
+  ], []);
+
+  const handleServiceClick = useCallback((index) => {
+    setActiveService(index);
+  }, []);
 
   // Mobile inline detail component
   const MobileDetailPanel = ({ service, isActive }) => (
@@ -87,10 +92,10 @@ const ServicesGridSection = () => {
                 </motion.li>
               ))}
             </ul>
-            <a href="/contact" className="service-detail-btn">
+            <Link to="/contact" className="service-detail-btn">
               Get Started
               <span className="material-symbols-outlined">arrow_forward</span>
-            </a>
+            </Link>
           </div>
         </motion.div>
       )}
@@ -116,8 +121,8 @@ const ServicesGridSection = () => {
               <div key={index} className="service-card-wrapper">
                 <motion.div
                   className={`service-mini-card ${activeService === index ? 'active' : ''}`}
-                  onMouseEnter={() => setActiveService(index)}
-                  onClick={() => setActiveService(index)}
+                  onMouseEnter={() => handleServiceClick(index)}
+                  onClick={() => handleServiceClick(index)}
                   whileHover={{ x: 8 }}
                   style={{
                     borderColor: activeService === index ? service.color : 'transparent'
@@ -197,10 +202,10 @@ const ServicesGridSection = () => {
                   ))}
                 </ul>
 
-                <a href="/contact" className="service-detail-btn">
+                <Link to="/contact" className="service-detail-btn">
                   Get Started
                   <span className="material-symbols-outlined">arrow_forward</span>
-                </a>
+                </Link>
               </motion.div>
             </AnimatePresence>
 

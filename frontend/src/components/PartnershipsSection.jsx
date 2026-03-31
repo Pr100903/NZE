@@ -1,16 +1,17 @@
+import { useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
 
 const FlipCard = ({ icon, title, challenge, impact, result, delay }) => {
-  // Extract savings amounts from result text for highlighting
-  const highlightSavings = (text) => {
-    return text.split(/(\$[\d,]+)/g).map((part, index) => {
+  // Memoize the highlight function
+  const highlightedResult = useMemo(() => {
+    return result.split(/(\$[\d,]+)/g).map((part, index) => {
       if (part.match(/\$[\d,]+/)) {
         return <span key={index} className="highlight-savings">{part}</span>;
       }
       return part;
     });
-  };
+  }, [result]);
 
   return (
     <motion.div
@@ -41,7 +42,7 @@ const FlipCard = ({ icon, title, challenge, impact, result, delay }) => {
               <span className="story-label impact">Our Impact:</span> {impact}
             </p>
             <p className="story-section">
-              <span className="story-label result">The Result:</span> {highlightSavings(result)}
+              <span className="story-label result">The Result:</span> {highlightedResult}
             </p>
           </div>
         </div>
@@ -51,7 +52,7 @@ const FlipCard = ({ icon, title, challenge, impact, result, delay }) => {
 };
 
 const PartnershipsSection = () => {
-  const cards = [
+  const cards = useMemo(() => [
     {
       icon: 'local_pizza',
       title: 'HOSPITALITY',
@@ -73,7 +74,7 @@ const PartnershipsSection = () => {
       impact: 'Consolidated all accounts and locked in long-term prices to avoid market spikes.',
       result: '$7,200 saved per site annually and 15+ hours of monthly admin work eliminated.'
     }
-  ];
+  ], []);
 
   return (
     <section className="section section-gray">

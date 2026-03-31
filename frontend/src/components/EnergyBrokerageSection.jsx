@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const EnergyBrokerageSection = () => {
@@ -57,10 +58,10 @@ const EnergyBrokerageSection = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.5}>
-              <a href="/contact" className="brokerage-btn">
+              <Link to="/contact" className="brokerage-btn">
                 <span>Get Free Assessment</span>
                 <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+              </Link>
             </AnimatedSection>
           </div>
 

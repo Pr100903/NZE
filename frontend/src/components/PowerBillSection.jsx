@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const PowerBillSection = () => {
@@ -23,6 +25,17 @@ const PowerBillSection = () => {
       videoRef.current.play();
     }
   }, [isInView]);
+
+  const animationTransition = useMemo(() => ({ 
+    duration: 0.8, 
+    ease: [0.25, 0.46, 0.45, 0.94],
+    y: {
+      type: "spring",
+      damping: 15,
+      stiffness: 100,
+      bounce: 0.4
+    }
+  }), []);
 
   return (
     <section className="power-bill-section" ref={sectionRef}>
@@ -49,10 +62,10 @@ const PowerBillSection = () => {
                   <span>You Save Money</span>
                 </div>
               </div>
-              <a href="/contact" className="power-bill-btn">
+              <Link to="/contact" className="power-bill-btn">
                 Upload Your Bill Now
                 <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </AnimatedSection>
 
@@ -63,16 +76,7 @@ const PowerBillSection = () => {
               style={{ y: videoY }}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94], // ease-out
-                y: {
-                  type: "spring",
-                  damping: 15,
-                  stiffness: 100,
-                  bounce: 0.4
-                }
-              }}
+              transition={animationTransition}
             >
               <video
                 ref={videoRef}

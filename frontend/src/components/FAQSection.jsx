@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const FAQSection = () => {
@@ -133,10 +134,10 @@ const FAQSection = () => {
         <AnimatedSection delay={0.5}>
           <div className="faq-cta">
             <p>Still have questions?</p>
-            <a href="/contact" className="faq-cta-btn">
+            <Link to="/contact" className="faq-cta-btn">
               Contact Us
               <span className="material-symbols-outlined">arrow_forward</span>
-            </a>
+            </Link>
           </div>
         </AnimatedSection>
       </div>

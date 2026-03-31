@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const FAQPage = () => {
-  const faqCategories = [
+  const faqCategories = useMemo(() => [
     {
       category: "General Questions",
       icon: "help_outline",
@@ -59,7 +60,7 @@ const FAQPage = () => {
         }
       ]
     }
-  ];
+  ], []);
 
   const [openItems, setOpenItems] = useState({});
 
@@ -135,10 +136,10 @@ const FAQPage = () => {
       >
         <h3>Still have questions?</h3>
         <p>We're here to help. Get in touch with our team for personalized assistance.</p>
-        <a href="/contact" className="faq-cta-btn">
+        <Link to="/contact" className="faq-cta-btn">
           Contact Us
           <span className="material-symbols-outlined">arrow_forward</span>
-        </a>
+        </Link>
       </motion.div>
     </div>
   );

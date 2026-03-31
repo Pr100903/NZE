@@ -1,28 +1,28 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
 
-  const solutionLinks = [
+  const solutionLinks = useMemo(() => [
     { label: 'Electricity', href: '/#services' },
     { label: 'Gas', href: '/#services' },
     { label: 'Mobile & Broadband', href: '/#services' },
     { label: 'Solar & EV', href: '/#services' }
-  ];
+  ], []);
 
-  const companyLinks = [
-  { label: 'About Us', href: '/about', isRoute: true },
-  { label: 'FAQ', href: '/faq', isRoute: true },
-  { label: 'Blog', href: '/blog', isRoute: true },
-  { label: 'Privacy Policy', href: '/privacy-policy', isRoute: true }
-];
+  const companyLinks = useMemo(() => [
+    { label: 'About Us', href: '/about', isRoute: true },
+    { label: 'FAQ', href: '/faq', isRoute: true },
+    { label: 'Blog', href: '/blog', isRoute: true },
+    { label: 'Privacy Policy', href: '/privacy-policy', isRoute: true }
+  ], []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     setEmail('');
-  };
+  }, []);
 
   return (
     <footer className="footer" id="contact">

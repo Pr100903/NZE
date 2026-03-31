@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const WhatWeDoSection = () => {
@@ -103,10 +104,10 @@ const WhatWeDoSection = () => {
               </div>
               <h3 className="service-card-title">{service.title}</h3>
               <p className="service-card-description">{service.description}</p>
-              <a href="/contact" className="service-card-link">
+              <Link to="/contact" className="service-card-link">
                 Learn More
                 <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+/* Fonts are loaded via index.html for better performance */
 
 /* Visby CF Bold Font */
 @font-face {
@@ -606,6 +605,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 2rem;
 }
 
+.hero-buttons a {
+  text-decoration: none;
+}
+
 /* Hero Primary Button - Outline Style */
 .hero-btn-primary {
   padding: 0.75rem 1.75rem;
@@ -643,6 +646,10 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   font-size: 0.75rem;
   transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .hero-btn-link:hover {
@@ -2608,7 +2615,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .services-showcase {
   padding: 5rem 2rem;
-  background: var(--gray);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   position: relative;
 }
 
@@ -2655,8 +2662,8 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2664,7 +2671,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .service-mini-card:hover,
 .service-mini-card.active {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--primary);
 }
 
 .service-mini-icon {
@@ -2711,8 +2719,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Detail Panel */
 .services-detail-panel {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   padding: 2.5rem;
   min-height: 380px;
@@ -2733,8 +2741,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .service-mobile-detail-content {
   padding: 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-top: none;
   border-radius: 0 0 10px 10px;
   margin-top: -2px;
@@ -5498,6 +5506,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: 2rem;
   margin-bottom: 2.5rem;
 }
 

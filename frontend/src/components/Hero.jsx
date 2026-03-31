@@ -1,16 +1,17 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Mouse parallax
+  // Mouse parallax with memoized spring config
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 25, stiffness: 150 };
+  const springConfig = useMemo(() => ({ damping: 25, stiffness: 150 }), []);
   const videoX = useSpring(useTransform(mouseX, [0, 1], [-15, 15]), springConfig);
   const videoY = useSpring(useTransform(mouseY, [0, 1], [-15, 15]), springConfig);
 
@@ -29,16 +30,16 @@ const Hero = () => {
     }
   }, []);
 
-  // Mouse move handler for parallax
-  const handleMouseMove = (e) => {
+  // Memoized mouse move handler
+  const handleMouseMove = useCallback((e) => {
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
     mouseX.set(clientX / innerWidth);
     mouseY.set(clientY / innerHeight);
-  };
+  }, [mouseX, mouseY]);
 
-  // Stagger animation for container
-  const containerVariants = {
+  // Memoized animation variants
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -47,9 +48,9 @@ const Hero = () => {
         delayChildren: 0.2
       }
     }
-  };
+  }), []);
 
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
@@ -59,35 +60,22 @@ const Hero = () => {
         ease: [0.16, 1, 0.3, 1]
       }
     }
-  };
+  }), []);
 
-  // Character stagger for highlight text
+  // Static data
   const highlightText = "Maximum";
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50, rotateX: -90 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: {
-        duration: 0.5,
-        delay: 0.8 + i * 0.05,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    })
-  };
-
-  const features = [
+  
+  const features = useMemo(() => [
     { icon: 'savings', text: 'Lower Energy Bills', animation: 'bounce' },
     { icon: 'support_agent', text: '24/7 Support', animation: 'pulse' },
     { icon: 'hub', text: 'Unified Connectivity', animation: 'rotate' }
-  ];
+  ], []);
 
-  const trustLogos = [
+  const trustLogos = useMemo(() => [
     'Official One.nz Partner',
     'Trusted by 500+ businesses',
     '5% Admin Fee Only'
-  ];
+  ], []);
 
   return (
     <section
@@ -137,25 +125,14 @@ const Hero = () => {
         animate="visible"
       >
         <div className="hero-text-container">
-          {/* Main Title with Character Animation */}
+          {/* Main Title - Simplified animation for better performance */}
           <motion.div variants={itemVariants}>
             <h1 className="hero-title">
               <span className="hero-title-line">One Connection.</span>
               <span className="hero-title-line">Zero Hassle.</span>
-              <span className="hero-title-line"><span className="hero-title-highlight">
-                {highlightText.split('').map((char, i) => (
-                  <motion.span
-                    key={i}
-                    custom={i}
-                    variants={letterVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="hero-letter"
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span> Savings.</span>
+              <span className="hero-title-line">
+                <span className="hero-title-highlight">{highlightText}</span> Savings.
+              </span>
             </h1>
           </motion.div>
 
@@ -191,29 +168,31 @@ const Hero = () => {
 
           {/* Premium CTA Buttons */}
           <motion.div className="hero-buttons" variants={itemVariants}>
-            <motion.a
-              href="/contact"
-              className="hero-btn-primary"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span>Discover Solutions</span>
-            </motion.a>
-            <motion.a
-              href="/blog"
-              className="hero-btn-link"
-              whileHover="hover"
-            >
-              <span>Watch Process</span>
-              <motion.span
-                className="material-symbols-outlined"
-                variants={{
-                  hover: { x: 5, transition: { duration: 0.2 } }
-                }}
+            <Link to="/contact">
+              <motion.button
+                className="hero-btn-primary"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                arrow_forward
-              </motion.span>
-            </motion.a>
+                <span>Discover Solutions</span>
+              </motion.button>
+            </Link>
+            <Link to="/blog">
+              <motion.button
+                className="hero-btn-link"
+                whileHover="hover"
+              >
+                <span>Watch Process</span>
+                <motion.span
+                  className="material-symbols-outlined"
+                  variants={{
+                    hover: { x: 5, transition: { duration: 0.2 } }
+                  }}
+                >
+                  arrow_forward
+                </motion.span>
+              </motion.button>
+            </Link>
           </motion.div>
 
           {/* Trust Strip */}

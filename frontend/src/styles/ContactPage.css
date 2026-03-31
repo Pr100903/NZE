@@ -2,28 +2,30 @@
 .contact-page {
   min-height: 100vh;
   background: #ffe413;
-  padding: 120px 40px 60px;
+  padding: 80px 40px 60px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .contact-container {
-  max-width: 1400px;
+  max-width: 1200px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  gap: 60px;
+  align-items: start;
+  margin-top: 60px;
 }
 
 /* Left Side */
 .contact-left {
   padding-right: 40px;
+  padding-top: 40px;
 }
 
 .contact-tagline {
-  margin-bottom: 24px;
+  margin: 24px;
 }
 
 .tagline-badge {
@@ -172,7 +174,8 @@
 /* Right Side - Form */
 .contact-right {
   background: #ffe413;
-  padding: 20px;
+  padding: 40px;
+  width: 100%;
 }
 
 .contact-form-modern {

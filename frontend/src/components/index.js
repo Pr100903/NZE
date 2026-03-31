@@ -1,17 +1,9 @@
 export { default as Header } from './Header';
 export { default as Hero } from './Hero';
-export { default as MissionSection } from './MissionSection';
-export { default as SolutionsSection } from './SolutionsSection';
 export { default as PartnershipsSection } from './PartnershipsSection';
-export { default as ServicesSection } from './ServicesSection';
 export { default as ServicesGridSection } from './ServicesGridSection';
-export { default as WhatWeDoSection } from './WhatWeDoSection';
-export { default as EnergyBrokerageSection } from './EnergyBrokerageSection';
 export { default as PowerBillSection } from './PowerBillSection';
 export { default as TrustedBySection } from './TrustedBySection';
-export { default as TrustedBrands } from './TrustedBrands';
-export { default as FAQSection } from './FAQSection';
-export { default as BlogSection } from './BlogSection';
 export { default as RetailersSection } from './retailers_section';
 export { default as Footer } from './Footer';
 export { default as AnimatedSection } from './AnimatedSection';

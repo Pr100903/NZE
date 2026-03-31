@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -24,65 +24,48 @@ const Header = () => {
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
 
-  const handleJoinClick = () => {
+  const handleJoinClick = useCallback(() => {
     setMobileMenuOpen(false);
     navigate('/loa');
-  };
+  }, [navigate]);
 
-  const handleNavClick = (e, link) => {
+  const handleNavClick = useCallback((e, link) => {
     e.preventDefault();
     setMobileMenuOpen(false);
 
-    // If it's a page link (starts with /), navigate to it
     if (link.href.startsWith('/')) {
       navigate(link.href);
       return;
     }
 
-    // If it's a hash link
     const targetId = link.href.replace('#', '');
-
-    // If we're on home page, scroll to the section
     if (location.pathname === '/') {
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // Navigate to home page and then to the section
       navigate('/', { state: { scrollTo: targetId } });
     }
-  };
+  }, [navigate, location.pathname]);
 
   // Handle scrolling after navigation
   useEffect(() => {
     if (location.state?.scrollTo) {
-      const element = document.getElementById(location.state.scrollTo);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
+      setTimeout(() => {
+        document.getElementById(location.state.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   }, [location]);
 
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
     { label: 'Services', href: '#services' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Blogs', href: '/blog' }
-  ];
+  ], []);
 
   return (
     <>
@@ -118,9 +101,9 @@ const Header = () => {
 
           {/* Buttons - Desktop */}
           <div className="header-buttons header-buttons-desktop">
-            <a href="/contact" className="header-btn header-btn-outline" onClick={(e) => { e.preventDefault(); navigate('/contact'); }}>
+            <button className="header-btn header-btn-outline" onClick={() => navigate('/contact')}>
               Get in Touch
-            </a>
+            </button>
             <button className="header-btn header-btn-primary" onClick={handleJoinClick}>
               Join Us
             </button>
@@ -184,13 +167,12 @@ const Header = () => {
               </div>
               
               <div className="mobile-menu-buttons">
-                <a 
-                  href="/contact" 
+                <button 
                   className="mobile-btn mobile-btn-outline" 
-                  onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate('/contact'); }}
+                  onClick={() => { setMobileMenuOpen(false); navigate('/contact'); }}
                 >
                   Get in Touch
-                </a>
+                </button>
                 <button className="mobile-btn mobile-btn-primary" onClick={handleJoinClick}>
                   Join Us
                 </button>

@@ -30,31 +30,3 @@ export const submitForm = async (formData) => {
     };
   }
 };
-
-export const generatePDF = async (formData) => {
-  try {
-    const response = await fetch(`${API_URL}/generate-pdf`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!response.ok) {
-      throw new Error(`PDF generation failed: ${response.statusText}`);
-    }
-
-    const blob = await response.blob();
-    return {
-      success: true,
-      data: blob,
-    };
-  } catch (error) {
-    console.error('PDF generation error:', error);
-    return {
-      success: false,
-      error: error.message,
-    };
-  }
-};

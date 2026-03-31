@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const BlogPost2 = () => {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const BlogPost2 = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
+            style={{ marginTop: '3rem' }}
           >
             <span className="material-symbols-outlined">arrow_back</span>
             Back to Blogs
@@ -160,10 +161,10 @@ const BlogPost2 = () => {
             <div className="blog-cta-box">
               <h3>Not Sure Which Option is Right for You?</h3>
               <p>Fill out our form and get a personalized connectivity audit for your business.</p>
-              <a href="/contact" className="blog-cta-btn">
+              <Link to="/contact" className="blog-cta-btn">
                 Fill Our Form for a Connectivity Audit
                 <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </motion.article>
         </div>

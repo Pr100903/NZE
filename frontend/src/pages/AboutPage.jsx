@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
 
 const AboutPage = () => {
@@ -190,10 +191,10 @@ const AboutPage = () => {
             <div className="cta-content">
               <h2>Ready to Lower Your Utility Bills?</h2>
               <p>Join hundreds of Kiwi businesses saving with NZ Essentials</p>
-              <a href="/contact" className="cta-btn">
+              <Link to="/contact" className="cta-btn">
                 Get Your Free Audit
                 <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </AnimatedSection>
         </div>

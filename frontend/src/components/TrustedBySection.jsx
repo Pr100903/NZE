@@ -1,8 +1,8 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 const TrustedBySection = () => {
-  // Use actual logos from assets/logos folder
-  const logos = [
+  const logos = useMemo(() => [
     { name: "Domino's", src: '/assets/logos/Dominos.svg.png' },
     { name: 'Woolworths', src: '/assets/logos/ww.svg' },
     { name: 'FreshChoice', src: '/assets/logos/fc.svg' },
@@ -10,10 +10,10 @@ const TrustedBySection = () => {
     { name: 'Thirsty Liquor', src: '/assets/logos/TL_FULL.svg' },
     { name: 'Umm', src: '/assets/logos/umm.png' },
     { name: 'Woolworths Alt', src: '/assets/logos/ww.png' },
-  ];
+  ], []);
 
   // Triple the logos for seamless infinite scroll
-  const duplicatedLogos = [...logos, ...logos, ...logos];
+  const duplicatedLogos = useMemo(() => [...logos, ...logos, ...logos], [logos]);
 
   return (
     <section className="trusted-section" id="clients">

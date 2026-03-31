@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const BlogPost1 = () => {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const BlogPost1 = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
+            style={{ marginTop: '3rem' }}
           >
             <span className="material-symbols-outlined">arrow_back</span>
             Back to Blogs
@@ -128,10 +129,10 @@ const BlogPost1 = () => {
             <div className="blog-cta-box">
               <h3>Ready to Protect Your Business?</h3>
               <p>Get a free rate review and discover how much you could save with a fixed-term contract.</p>
-              <a href="/contact" className="blog-cta-btn">
+              <Link to="/contact" className="blog-cta-btn">
                 Contact Us for a Free Rate Review
                 <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </motion.article>
         </div>

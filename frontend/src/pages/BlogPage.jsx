@@ -1,8 +1,9 @@
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const BlogPage = () => {
-  const blogs = [
+  const blogs = useMemo(() => [
     {
       id: 1,
       title: "Market Volatility & Your Bottom Line",
@@ -30,7 +31,7 @@ const BlogPage = () => {
       color: "#96ceb4",
       link: "/blog/sustainability"
     }
-  ];
+  ], []);
 
   return (
     <div className="blog-page-modern">
@@ -116,10 +117,10 @@ const BlogPage = () => {
           >
             <h3>Want to learn more?</h3>
             <p>Get personalized advice for your business needs</p>
-            <a href="/contact" className="blog-cta-btn">
+            <Link to="/contact" className="blog-cta-btn">
               Get in Touch
               <span className="material-symbols-outlined">arrow_forward</span>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
