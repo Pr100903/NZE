@@ -17,7 +17,7 @@ const Header = () => {
   }, []);
 
   const handleJoinClick = () => {
-    navigate('/contact');
+    navigate('/loa');
   };
 
   const handleNavClick = (e, link) => {

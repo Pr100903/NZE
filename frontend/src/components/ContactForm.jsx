@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { submitForm } from '../services/formApi';
+import TermsAndConditions from './TermsAndConditions';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,7 @@ const ContactForm = () => {
   const [submitMessage, setSubmitMessage] = useState('');
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -516,7 +518,17 @@ const ContactForm = () => {
                 required
               />
               <label htmlFor="agreeTerms">
-                I agree to all the <a href="#terms">Terms and Conditions</a> *
+                I agree to all the{' '}
+                <a 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowTermsModal(true);
+                  }}
+                  className="terms-link"
+                >
+                  Terms and Conditions
+                </a> *
               </label>
             </div>
           </fieldset>
@@ -530,6 +542,12 @@ const ContactForm = () => {
           </button>
         </form>
       )}
+
+      {/* Terms and Conditions Modal */}
+      <TermsAndConditions 
+        isOpen={showTermsModal} 
+        onClose={() => setShowTermsModal(false)} 
+      />
     </div>
   );
 };

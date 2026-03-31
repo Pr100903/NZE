@@ -16,3 +16,4 @@ export { default as RetailersSection } from './retailers_section';
 export { default as Footer } from './Footer';
 export { default as AnimatedSection } from './AnimatedSection';
 export { default as ContactForm } from './ContactForm';
+export { default as ScrollToTop } from './ScrollToTop';

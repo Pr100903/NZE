@@ -3,10 +3,26 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 const PDFDocument = require('pdfkit');
 const path = require('path');
+const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Configure multer for file uploads
+const storage = multer.memoryStorage();
+const upload = multer({ 
+  storage: storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type. Only PDF, PNG, and JPG are allowed.'));
+    }
+  }
+});
 
 // Middleware
 app.use(cors());
@@ -139,6 +155,85 @@ app.post('/api/submit-form', async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Submission failed: ' + error.message
+    });
+  }
+});
+
+// Simple contact form endpoint (with file upload)
+app.post('/api/contact', upload.single('powerBill'), async (req, res) => {
+  try {
+    const { name, email, phone } = req.body;
+    const file = req.file;
+
+    // Validate required fields
+    if (!name || !email || !phone) {
+      return res.status(400).json({
+        success: false,
+        message: 'Name, email, and phone are required'
+      });
+    }
+
+    // Prepare email content
+    const emailContent = `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> +64 ${phone}</p>
+      <p><strong>Power Bill Attached:</strong> ${file ? 'Yes' : 'No'}</p>
+      <p><strong>Submission Date:</strong> ${new Date().toLocaleString()}</p>
+    `;
+
+    // Prepare attachments
+    const attachments = [];
+    if (file) {
+      attachments.push({
+        filename: file.originalname,
+        content: file.buffer
+      });
+    }
+
+    // Send confirmation email to form submitter
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER || 'your-email@gmail.com',
+      to: email,
+      subject: 'NZ Essentials - We received your inquiry!',
+      html: `
+        <h2>Thank you for contacting us, ${name}!</h2>
+        <p>We have received your inquiry and will be in touch within 24-48 hours.</p>
+        <p>Here's a summary of your submission:</p>
+        <ul>
+          <li><strong>Name:</strong> ${name}</li>
+          <li><strong>Email:</strong> ${email}</li>
+          <li><strong>Phone:</strong> +64 ${phone}</li>
+          <li><strong>Power Bill:</strong> ${file ? 'Attached' : 'Not provided'}</li>
+        </ul>
+        <p>Our team will analyze your information and get back to you with potential savings!</p>
+        <br>
+        <p>Best regards,<br>NZ Essentials Team</p>
+      `
+    });
+
+    // Send notification email to admin
+    if (process.env.ADMIN_EMAIL) {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER || 'your-email@gmail.com',
+        to: process.env.ADMIN_EMAIL,
+        subject: 'New Contact Form Submission - NZ Essentials',
+        html: emailContent,
+        attachments: attachments
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Thank you! We will be in touch shortly.'
+    });
+
+  } catch (error) {
+    console.error('Contact form error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to submit. Please try again later.'
     });
   }
 });
