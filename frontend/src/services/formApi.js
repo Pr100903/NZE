@@ -1,5 +1,5 @@
 // API service for form submissions
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3500/api';
 
 export const submitForm = async (formData) => {
   try {
