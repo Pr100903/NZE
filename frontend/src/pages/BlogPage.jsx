@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const BlogPage = () => {
   const blogs = [
@@ -8,7 +9,8 @@ const BlogPage = () => {
       category: "Energy Strategy",
       excerpt: "How fixed-term contracts protect your business from unpredictable energy price spikes.",
       icon: "trending_up",
-      color: "#ffe413"
+      color: "#ffe413",
+      link: "/blog/market-volatility"
     },
     {
       id: 2,
@@ -16,7 +18,8 @@ const BlogPage = () => {
       category: "Connectivity",
       excerpt: "Fibre, Wireless, or Satellite? Choosing the right solution for your business needs.",
       icon: "wifi",
-      color: "#4ecdc4"
+      color: "#4ecdc4",
+      link: "/blog/connectivity-guide"
     },
     {
       id: 3,
@@ -24,7 +27,8 @@ const BlogPage = () => {
       category: "Sustainability",
       excerpt: "Turn your green transition into a financial advantage with Solar and EV infrastructure.",
       icon: "solar_power",
-      color: "#96ceb4"
+      color: "#96ceb4",
+      link: "/blog/sustainability"
     }
   ];
 
@@ -92,10 +96,10 @@ const BlogPage = () => {
                 <span className="blog-card-category">{blog.category}</span>
                 <h2 className="blog-card-title-modern">{blog.title}</h2>
                 <p className="blog-card-excerpt-modern">{blog.excerpt}</p>
-                <a href="/contact" className="blog-card-link-modern">
+                <Link to={blog.link} className="blog-card-link-modern">
                   Read More
                   <span className="material-symbols-outlined">arrow_forward</span>
-                </a>
+                </Link>
               </motion.article>
             ))}
           </div>

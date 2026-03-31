@@ -192,7 +192,7 @@ const Hero = () => {
           {/* Premium CTA Buttons */}
           <motion.div className="hero-buttons" variants={itemVariants}>
             <motion.a
-              href="#solutions"
+              href="/contact"
               className="hero-btn-primary"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -200,7 +200,7 @@ const Hero = () => {
               <span>Discover Solutions</span>
             </motion.a>
             <motion.a
-              href="#process"
+              href="/blog"
               className="hero-btn-link"
               whileHover="hover"
             >

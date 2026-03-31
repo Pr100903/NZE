@@ -56,6 +56,47 @@ const ServicesGridSection = () => {
     }
   ];
 
+  // Mobile inline detail component
+  const MobileDetailPanel = ({ service, isActive }) => (
+    <AnimatePresence>
+      {isActive && (
+        <motion.div
+          className="service-mobile-detail"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="service-mobile-detail-content">
+            <p className="service-detail-desc">{service.description}</p>
+            <ul className="service-detail-benefits">
+              {service.benefits.map((benefit, idx) => (
+                <motion.li
+                  key={idx}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                >
+                  <span
+                    className="material-symbols-outlined"
+                    style={{ color: service.color }}
+                  >
+                    check_circle
+                  </span>
+                  {benefit}
+                </motion.li>
+              ))}
+            </ul>
+            <a href="/contact" className="service-detail-btn">
+              Get Started
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
   return (
     <section className="services-showcase" id="services">
       <div className="container">
@@ -69,43 +110,46 @@ const ServicesGridSection = () => {
         </AnimatedSection>
 
         <div className="services-showcase-grid">
-          {/* Left: Service Cards */}
+          {/* Left: Service Cards (with mobile inline details) */}
           <div className="services-cards-list">
             {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className={`service-mini-card ${activeService === index ? 'active' : ''}`}
-                onMouseEnter={() => setActiveService(index)}
-                onClick={() => setActiveService(index)}
-                whileHover={{ x: 8 }}
-                style={{
-                  borderColor: activeService === index ? service.color : 'transparent'
-                }}
-              >
-                <div
-                  className="service-mini-icon"
+              <div key={index} className="service-card-wrapper">
+                <motion.div
+                  className={`service-mini-card ${activeService === index ? 'active' : ''}`}
+                  onMouseEnter={() => setActiveService(index)}
+                  onClick={() => setActiveService(index)}
+                  whileHover={{ x: 8 }}
                   style={{
-                    backgroundColor: `${service.color}15`,
-                    color: service.color
+                    borderColor: activeService === index ? service.color : 'transparent'
                   }}
                 >
-                  <span className="material-symbols-outlined">{service.icon}</span>
-                </div>
-                <div className="service-mini-info">
-                  <h3>{service.title}</h3>
-                  <p>{service.shortDesc}</p>
-                </div>
-                <span
-                  className="material-symbols-outlined service-mini-arrow"
-                  style={{ color: activeService === index ? service.color : 'rgba(255,255,255,0.3)' }}
-                >
-                  chevron_right
-                </span>
-              </motion.div>
+                  <div
+                    className="service-mini-icon"
+                    style={{
+                      backgroundColor: `${service.color}15`,
+                      color: service.color
+                    }}
+                  >
+                    <span className="material-symbols-outlined">{service.icon}</span>
+                  </div>
+                  <div className="service-mini-info">
+                    <h3>{service.title}</h3>
+                    <p>{service.shortDesc}</p>
+                  </div>
+                  <span
+                    className="material-symbols-outlined service-mini-arrow"
+                    style={{ color: activeService === index ? service.color : 'rgba(255,255,255,0.3)' }}
+                  >
+                    chevron_right
+                  </span>
+                </motion.div>
+                {/* Mobile inline detail - shows below each card on mobile */}
+                <MobileDetailPanel service={service} isActive={activeService === index} />
+              </div>
             ))}
           </div>
 
-          {/* Right: Detail Panel */}
+          {/* Right: Detail Panel (desktop only) */}
           <div className="services-detail-panel">
             <AnimatePresence mode="wait">
               <motion.div

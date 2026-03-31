@@ -57,7 +57,7 @@ const EnergyBrokerageSection = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.5}>
-              <a href="#contact" className="brokerage-btn">
+              <a href="/contact" className="brokerage-btn">
                 <span>Get Free Assessment</span>
                 <span className="material-symbols-outlined">arrow_forward</span>
               </a>

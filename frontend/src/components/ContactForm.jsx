@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { submitForm } from '../services/formApi';
 import TermsAndConditions from './TermsAndConditions';
 
@@ -33,7 +33,7 @@ const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const canvasRef = useRef(null);
-  const [isDrawing, setIsDrawing] = useState(false);
+  const isDrawingRef = useRef(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
 
   const handleChange = (e) => {
@@ -44,36 +44,78 @@ const ContactForm = () => {
     }));
   };
 
-  const startDrawing = (e) => {
-    if (!canvasRef.current) return;
-    setIsDrawing(true);
+  const getCoordinates = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    const x = (e.clientX - rect.left) * scaleX;
-    const y = (e.clientY - rect.top) * scaleY;
-    const ctx = canvas.getContext('2d');
+    
+    // Handle both mouse and touch events
+    if (e.touches && e.touches.length > 0) {
+      const touch = e.touches[0];
+      return {
+        x: (touch.clientX - rect.left) * scaleX,
+        y: (touch.clientY - rect.top) * scaleY
+      };
+    }
+    return {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
+    };
+  };
+
+  const startDrawing = (e) => {
+    if (!canvasRef.current) return;
+    isDrawingRef.current = true;
+    const { x, y } = getCoordinates(e);
+    const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(x, y);
   };
 
   const draw = (e) => {
-    if (!isDrawing || !canvasRef.current) return;
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const x = (e.clientX - rect.left) * scaleX;
-    const y = (e.clientY - rect.top) * scaleY;
-    const ctx = canvas.getContext('2d');
+    if (!isDrawingRef.current || !canvasRef.current) return;
+    const { x, y } = getCoordinates(e);
+    const ctx = canvasRef.current.getContext('2d');
     ctx.lineTo(x, y);
     ctx.stroke();
   };
 
   const stopDrawing = () => {
-    setIsDrawing(false);
+    isDrawingRef.current = false;
   };
+
+  // Attach non-passive touch event listeners for signature canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const handleTouchStart = (e) => {
+      e.preventDefault();
+      startDrawing(e);
+    };
+
+    const handleTouchMove = (e) => {
+      e.preventDefault();
+      draw(e);
+    };
+
+    const handleTouchEnd = (e) => {
+      e.preventDefault();
+      stopDrawing();
+    };
+
+    // Add listeners with { passive: false } to allow preventDefault
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+    return () => {
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, []);
 
   const clearSignature = () => {
     if (canvasRef.current) {

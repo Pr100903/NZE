@@ -1,0 +1,143 @@
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+
+const BlogPost1 = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="blog-post-page">
+      <motion.section
+        className="blog-post-hero"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="container">
+          <motion.button
+            className="blog-back-btn"
+            onClick={() => navigate('/blog')}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+            Back to Blogs
+          </motion.button>
+          
+          <motion.span
+            className="blog-post-category"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            Energy Strategy
+          </motion.span>
+          
+          <motion.h1
+            className="blog-post-title"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            Is Market Volatility Killing Your Bottom Line?
+          </motion.h1>
+          
+          <motion.div
+            className="blog-post-meta"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <span className="material-symbols-outlined">schedule</span>
+            5 min read
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <section className="blog-post-content">
+        <div className="container">
+          <motion.article
+            className="blog-article"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <div className="blog-section">
+              <div className="blog-section-icon">
+                <span className="material-symbols-outlined">warning</span>
+              </div>
+              <h2>The Problem</h2>
+              <p>
+                Energy prices in New Zealand can be unpredictable. For a business, a sudden spike 
+                in the wholesale market doesn't just mean a higher bill—it means a ruined budget 
+                and squeezed margins.
+              </p>
+            </div>
+
+            <div className="blog-section">
+              <div className="blog-section-icon">
+                <span className="material-symbols-outlined">shield</span>
+              </div>
+              <h2>The Solution: The "Fixed-Term" Shield</h2>
+              <p>
+                Most businesses fall into the trap of staying on "variable" rates because it feels 
+                flexible. In reality, it leaves you vulnerable. At NZ Essentials, we specialize in 
+                negotiating fixed-term contracts.
+              </p>
+              <p>
+                By locking in a rate for 12, 24, or even 36 months, we provide you with 
+                <strong> Price Certainty</strong>. Even if the market spikes next winter, your rate 
+                stays exactly where it is.
+              </p>
+            </div>
+
+            <div className="blog-section blog-highlight">
+              <div className="blog-section-icon">
+                <span className="material-symbols-outlined">help</span>
+              </div>
+              <h2>Why Use a Broker?</h2>
+              <p>
+                Retailers often reserve their best "unlisted" rates for brokers who bring them 
+                high-volume business. We negotiate these rates on your behalf, ensuring that even 
+                after our 5% admin fee, your net savings are significantly higher than going direct.
+              </p>
+            </div>
+
+            <div className="blog-key-points">
+              <h3>Key Benefits</h3>
+              <ul>
+                <li>
+                  <span className="material-symbols-outlined">check_circle</span>
+                  Price certainty for 12-36 months
+                </li>
+                <li>
+                  <span className="material-symbols-outlined">check_circle</span>
+                  Access to exclusive "unlisted" broker rates
+                </li>
+                <li>
+                  <span className="material-symbols-outlined">check_circle</span>
+                  Protection from market volatility
+                </li>
+                <li>
+                  <span className="material-symbols-outlined">check_circle</span>
+                  Net savings even after our 5% admin fee
+                </li>
+              </ul>
+            </div>
+
+            <div className="blog-cta-box">
+              <h3>Ready to Protect Your Business?</h3>
+              <p>Get a free rate review and discover how much you could save with a fixed-term contract.</p>
+              <a href="/contact" className="blog-cta-btn">
+                Contact Us for a Free Rate Review
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+          </motion.article>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default BlogPost1;

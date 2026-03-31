@@ -103,7 +103,7 @@ const WhatWeDoSection = () => {
               </div>
               <h3 className="service-card-title">{service.title}</h3>
               <p className="service-card-description">{service.description}</p>
-              <a href="#contact" className="service-card-link">
+              <a href="/contact" className="service-card-link">
                 Learn More
                 <span className="material-symbols-outlined">arrow_forward</span>
               </a>

@@ -6,3 +6,6 @@ export { default as LOAPage } from './LOAPage';
 export { default as PrivacyPolicy } from './PrivacyPolicy';
 export { default as FAQPage } from './FAQPage';
 export { default as BlogPage } from './BlogPage';
+export { default as BlogPost1 } from './BlogPost1';
+export { default as BlogPost2 } from './BlogPost2';
+export { default as BlogPost3 } from './BlogPost3';
