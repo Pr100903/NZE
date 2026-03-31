@@ -8,7 +8,7 @@ const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3500;
 
 // Configure multer for file uploads
 const storage = multer.memoryStorage();
@@ -39,7 +39,7 @@ app.use(express.static('./'));
 
 // Configure Nodemailer transporter for Hostinger
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.hostinger.com',
+  host: process.env.SMTP_HOST || 'smtp.titan.email',
   port: parseInt(process.env.SMTP_PORT) || 465,
   secure: true,
   auth: {

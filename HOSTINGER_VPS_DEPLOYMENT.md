@@ -90,12 +90,12 @@ nano .env
 
 Add these lines (press Ctrl+O to save, Ctrl+X to exit):
 ```env
-PORT=3000
+PORT=3500
 FRONTEND_URL=https://indigo-coyote-536695.hostingersite.com
 SMTP_HOST=smtp.hostinger.com
 SMTP_PORT=465
 EMAIL_USER=naveen@nzessentials.co.nz
-EMAIL_PASSWORD=YOUR_ACTUAL_EMAIL_PASSWORD
+EMAIL_PASSWORD=Naveen@2022
 ADMIN_EMAIL=yadav.vipin95@outlook.com
 ```
 
