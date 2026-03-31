@@ -4,12 +4,13 @@ import { motion } from 'framer-motion';
 const TrustedBySection = () => {
   const logos = useMemo(() => [
     { name: "Domino's", src: '/assets/logos/Dominos.svg.png' },
+    { name: "Super Liquor", src: '/assets/logos/SL.png' },
     { name: 'Woolworths', src: '/assets/logos/ww.svg' },
     { name: 'FreshChoice', src: '/assets/logos/fc.svg' },
     { name: 'Liquorland', src: '/assets/logos/LiquorLandNZ.svg.png' },
     { name: 'Thirsty Liquor', src: '/assets/logos/TL_FULL.svg' },
     { name: 'Umm', src: '/assets/logos/umm.png' },
-    { name: 'Woolworths Alt', src: '/assets/logos/ww.png' },
+    { name: 'Thirsty Liquor', src: '/assets/logos/TL.webp' },
   ], []);
 
   // Triple the logos for seamless infinite scroll

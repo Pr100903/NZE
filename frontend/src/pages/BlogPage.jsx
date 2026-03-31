@@ -1,8 +1,33 @@
-import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const BlogPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    // Intersection observer for cards
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cardsRef.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const blogs = useMemo(() => [
     {
       id: 1,
@@ -35,53 +60,41 @@ const BlogPage = () => {
 
   return (
     <div className="blog-page-modern">
-      <motion.section
-        className="blog-hero-modern"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+      <section
+        className={`blog-hero-modern fade-in ${isVisible ? 'visible' : ''}`}
       >
         <div className="container">
-          <motion.span
-            className="section-label"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <span
+            className={`section-label fade-in-up ${isVisible ? 'visible' : ''}`}
+            style={{ animationDelay: '0.2s' }}
           >
             Insights & Resources
-          </motion.span>
-          <motion.h1
-            className="blog-hero-title"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          </span>
+          <h1
+            className={`blog-hero-title fade-in-up ${isVisible ? 'visible' : ''}`}
+            style={{ animationDelay: '0.3s' }}
           >
             Expert Advice for<br />
             <span>Kiwi Businesses</span>
-          </motion.h1>
-          <motion.p
-            className="blog-hero-desc"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          </h1>
+          <p
+            className={`blog-hero-desc fade-in-up ${isVisible ? 'visible' : ''}`}
+            style={{ animationDelay: '0.4s' }}
           >
             Stay informed with the latest strategies for reducing costs and future-proofing your operations.
-          </motion.p>
+          </p>
         </div>
-      </motion.section>
+      </section>
 
       <section className="blog-grid-modern">
         <div className="container">
           <div className="blog-cards-modern">
             {blogs.map((blog, index) => (
-              <motion.article
+              <article
                 key={blog.id}
-                className="blog-card-modern"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -8 }}
+                ref={(el) => (cardsRef.current[index] = el)}
+                className="blog-card-modern fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div
                   className="blog-card-icon-modern"
@@ -101,7 +114,7 @@ const BlogPage = () => {
                   Read More
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </Link>
-              </motion.article>
+              </article>
             ))}
           </div>
         </div>
@@ -109,19 +122,14 @@ const BlogPage = () => {
 
       <section className="blog-cta-section">
         <div className="container">
-          <motion.div
-            className="blog-cta-box"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <div className="blog-cta-box">
             <h3>Want to learn more?</h3>
             <p>Get personalized advice for your business needs</p>
             <Link to="/contact" className="blog-cta-btn">
               Get in Touch
               <span className="material-symbols-outlined">arrow_forward</span>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

@@ -2,6 +2,8 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import '../styles/ContactPage.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -39,7 +41,7 @@ const ContactPage = () => {
         formDataToSend.append('powerBill', file);
       }
 
-      const response = await fetch('http://localhost:3000/api/contact', {
+      const response = await fetch(`${API_URL}/contact`, {
         method: 'POST',
         body: formDataToSend,
       });

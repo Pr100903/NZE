@@ -1,66 +1,58 @@
-import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const BlogPost3 = () => {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <div className="blog-post-page">
-      <motion.section
-        className="blog-post-hero"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+      <section
+        className={`blog-post-hero fade-in ${isVisible ? 'visible' : ''}`}
       >
         <div className="container">
-          <motion.button
-            className="blog-back-btn"
+          <button
+            className={`blog-back-btn fade-in-left ${isVisible ? 'visible' : ''}`}
             onClick={() => navigate('/blog')}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+            style={{ animationDelay: '0.2s' }}
           >
             <span className="material-symbols-outlined">arrow_back</span>
             Back to Blogs
-          </motion.button>
+          </button>
           
-          <motion.span
-            className="blog-post-category"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <span
+            className={`blog-post-category fade-in-up ${isVisible ? 'visible' : ''}`}
+            style={{ animationDelay: '0.3s' }}
           >
             Sustainability
-          </motion.span>
+          </span>
           
-          <motion.h1
-            className="blog-post-title"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <h1
+            className={`blog-post-title fade-in-up ${isVisible ? 'visible' : ''}`}
+            style={{ animationDelay: '0.4s' }}
           >
             Solar & EV: Turning Sustainability into Profit
-          </motion.h1>
+          </h1>
           
-          <motion.div
-            className="blog-post-meta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
+            className={`blog-post-meta fade-in-up ${isVisible ? 'visible' : ''}`}
+            style={{ animationDelay: '0.5s' }}
           >
             <span className="material-symbols-outlined">schedule</span>
             5 min read
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       <section className="blog-post-content">
         <div className="container">
-          <motion.article
-            className="blog-article"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <article
+            className={`blog-article fade-in-up ${isVisible ? 'visible' : ''}`}
+            style={{ animationDelay: '0.6s' }}
           >
             <div className="blog-section">
               <div className="blog-section-icon">
@@ -159,7 +151,7 @@ const BlogPost3 = () => {
                 <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>
-          </motion.article>
+          </article>
         </div>
       </section>
     </div>
