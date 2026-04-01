@@ -83,11 +83,43 @@ const ContactPage = () => {
     { icon: 'savings', title: 'Save up to 20%', desc: 'On your electricity and gas bills' },
     { icon: 'verified', title: 'Free Audit', desc: 'No obligation energy assessment' },
     { icon: 'support_agent', title: '24/7 Support', desc: 'Dedicated account manager' },
-    { icon: 'speed', title: 'Quick Process', desc: 'Results within 48 hours' },
+    { icon: 'balance', title: 'Unbiased Advice', desc: 'Independent recommendations' },
   ];
 
   return (
     <section className="contact-page">
+      {/* Floating decorative elements */}
+      <div className="contact-decor">
+        <motion.span 
+          className="decor-icon decor-1"
+          animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="material-symbols-outlined">bolt</span>
+        </motion.span>
+        <motion.span 
+          className="decor-icon decor-2"
+          animate={{ y: [0, 15, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        >
+          <span className="material-symbols-outlined">local_fire_department</span>
+        </motion.span>
+        <motion.span 
+          className="decor-icon decor-3"
+          animate={{ y: [0, -10, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        >
+          <span className="material-symbols-outlined">lightbulb</span>
+        </motion.span>
+        <motion.span 
+          className="decor-icon decor-4"
+          animate={{ y: [0, 10, 0], rotate: [0, 15, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+        >
+          <span className="material-symbols-outlined">eco</span>
+        </motion.span>
+      </div>
+
       <div className="contact-container">
         {/* Left Side - Why Contact Us */}
         <motion.div 
@@ -109,7 +141,7 @@ const ContactPage = () => {
           </motion.h1>
           
           <motion.p className="contact-subtext" variants={itemVariants}>
-            Find out how much you can save.
+            Find out how much you can save — it's free!
           </motion.p>
 
           <motion.div className="contact-benefits" variants={itemVariants}>
@@ -117,7 +149,8 @@ const ContactPage = () => {
               <motion.div 
                 key={index} 
                 className="benefit-item"
-                whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                whileHover={{ x: 8, scale: 1.02 }}
+                transition={{ duration: 0.2 }}
               >
                 <span className="material-symbols-outlined benefit-icon">{benefit.icon}</span>
                 <div className="benefit-content">
@@ -129,11 +162,19 @@ const ContactPage = () => {
           </motion.div>
 
           <motion.div className="contact-illustration" variants={itemVariants}>
-            <div className="illustration-hand">
-              <span className="material-symbols-outlined hand-icon">back_hand</span>
-              <span className="material-symbols-outlined spark-icon spark-1">bolt</span>
-              <span className="material-symbols-outlined spark-icon spark-2">local_fire_department</span>
-              <span className="material-symbols-outlined spark-icon spark-3">ac_unit</span>
+            <div className="illustration-wave">
+              <svg viewBox="0 0 200 60" className="wave-svg">
+                <motion.path
+                  d="M0,30 Q25,10 50,30 T100,30 T150,30 T200,30"
+                  fill="none"
+                  stroke="rgba(0,0,0,0.15)"
+                  strokeWidth="3"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+                />
+              </svg>
+              <span className="illustration-text">Let's connect!</span>
             </div>
           </motion.div>
         </motion.div>
@@ -152,7 +193,7 @@ const ContactPage = () => {
               animate={{ scale: 1, opacity: 1 }}
             >
               <span className="material-symbols-outlined success-icon">check_circle</span>
-              <h3>Thank You!</h3>
+              <h3>Awesome!</h3>
               <p>{submitMessage}</p>
               <button 
                 className="btn-reset"
@@ -163,6 +204,11 @@ const ContactPage = () => {
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="contact-form-modern">
+              <div className="form-header">
+                <span className="material-symbols-outlined form-header-icon">edit_note</span>
+                <h3>Tell us about you</h3>
+              </div>
+
               <div className="form-field">
                 <label htmlFor="name">Your name *</label>
                 <input
@@ -171,7 +217,7 @@ const ContactPage = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="John Smith"
+                  placeholder="Kia Ora, what's your name?"
                   required
                 />
               </div>
@@ -184,7 +230,7 @@ const ContactPage = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="mail@example.co.nz"
+                  placeholder="hello@yourbusiness.co.nz"
                   required
                 />
               </div>
@@ -193,7 +239,7 @@ const ContactPage = () => {
                 <label htmlFor="phone">Your phone *</label>
                 <div className="phone-input-wrapper">
                   <div className="phone-prefix">
-                    <span className="flag-icon">🇳🇿</span>
+                    <span className="flag-text">NZ</span>
                     <span>+64</span>
                   </div>
                   <input
@@ -202,7 +248,7 @@ const ContactPage = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="(000)000-0000"
+                    placeholder="21 234 5678"
                     required
                   />
                 </div>
@@ -210,8 +256,8 @@ const ContactPage = () => {
 
               <div className="form-field file-field">
                 <p className="file-description">
-                  Attach your business power bill and if you don't have one, 
-                  just submit the form without it and we will be in touch!
+                  Got your power bill? Attach it for a faster quote! 
+                  No worries if not — we'll sort it out together.
                 </p>
                 <input
                   type="file"
@@ -245,13 +291,13 @@ const ContactPage = () => {
                 className="btn-submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
+                {isSubmitting ? 'Sending...' : 'Get My Free Quote'}
               </button>
 
               <p className="form-disclaimer">
-                By submitting the request, you consent to the processing of your personal data and agree to our{' '}
-                <a href="/privacy-policy">Privacy Policy</a>. For general queries, including partnership opportunities, 
-                please email <a href="mailto:info@nzessentials.co.nz">info@nzessentials.co.nz</a>
+                By submitting, you agree to our{' '}
+                <a href="/privacy-policy">Privacy Policy</a>. 
+                Questions? Email <a href="mailto:Kiaora@nzessentials.co.nz">Kiaora@nzessentials.co.nz</a>
               </p>
             </form>
           )}

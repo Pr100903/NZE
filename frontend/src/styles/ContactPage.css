@@ -2,48 +2,102 @@
 .contact-page {
   min-height: 100vh;
   background: #ffe413;
-  padding: 80px 40px 60px;
+  padding: 100px 24px 60px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating Decorations */
+.contact-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decor-icon {
+  position: absolute;
+  opacity: 0.3;
+  padding: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.decor-icon .material-symbols-outlined {
+  font-size: 2rem;
+  color: #000;
+}
+
+.decor-1 { top: 15%; left: 5%; }
+.decor-2 { top: 30%; right: 8%; }
+.decor-3 { bottom: 25%; left: 10%; }
+.decor-4 { bottom: 15%; right: 5%; }
+
+@media (max-width: 768px) {
+  .decor-icon { 
+    padding: 8px;
+    border-width: 2px;
+  }
+  .decor-icon .material-symbols-outlined {
+    font-size: 1.4rem;
+  }
 }
 
 .contact-container {
-  max-width: 1200px;
+  max-width: 1100px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 40px;
   align-items: start;
-  margin-top: 60px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Left Side */
+/* Left Side - Form (order 1) */
+.contact-right {
+  order: 1;
+}
+
+/* Right Side - Content (order 2) */
 .contact-left {
-  padding-right: 40px;
-  padding-top: 40px;
+  order: 2;
+  padding-left: 20px;
+  padding-right: 0;
+  padding-top: 20px;
 }
 
 .contact-tagline {
-  margin: 24px;
+  margin-bottom: 20px;
 }
 
 .tagline-badge {
   display: inline-block;
   background: rgba(0, 0, 0, 0.1);
   color: #000;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .contact-headline {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.1;
-  margin-bottom: 24px;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.15;
+  margin-bottom: 20px;
   color: #000;
 }
 
@@ -57,23 +111,13 @@
   font-weight: 700;
   font-style: normal;
   position: relative;
-}
-
-.headline-italic .highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: #000;
-  opacity: 0.3;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.15) 60%);
 }
 
 .contact-subtext {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: #333;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   font-weight: 500;
 }
 
@@ -81,31 +125,32 @@
 .contact-benefits {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 12px;
+  margin-bottom: 32px;
 }
 
 .benefit-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 12px;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
   cursor: default;
   transition: all 0.3s ease;
 }
 
 .benefit-item:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .benefit-icon {
-  font-size: 28px;
-  color: #333;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 10px;
-  border-radius: 50%;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  color: #000;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 10px;
 }
 
 .benefit-content h4 {
@@ -125,63 +170,60 @@
 .contact-illustration {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
-.illustration-hand {
-  position: relative;
+.illustration-wave {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
 }
 
-.hand-icon {
-  font-size: 120px;
-  color: rgba(0, 0, 0, 0.15);
-  transform: rotate(-15deg);
+.wave-svg {
+  width: 150px;
+  height: 40px;
 }
 
-.spark-icon {
-  position: absolute;
-  font-size: 36px;
-  color: rgba(0, 0, 0, 0.25);
-  animation: float 3s ease-in-out infinite;
-}
-
-.spark-1 {
-  top: -10px;
-  right: 20px;
-  animation-delay: 0s;
-}
-
-.spark-2 {
-  top: 30px;
-  right: -20px;
-  animation-delay: 0.5s;
-}
-
-.spark-3 {
-  top: -30px;
-  right: 60px;
-  animation-delay: 1s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.illustration-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /* Right Side - Form */
 .contact-right {
-  background: #ffe413;
-  padding: 40px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 32px;
+  border-radius: 24px;
   width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.form-header-icon {
+  font-size: 2rem;
+  color: #000;
+}
+
+.form-header h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
 }
 
 .contact-form-modern {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .form-field {
@@ -191,7 +233,7 @@
 }
 
 .form-field label {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #333;
 }
@@ -200,10 +242,10 @@
   padding: 16px 20px;
   font-size: 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #ffffff;
   color: #000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
@@ -213,16 +255,17 @@
 
 .form-field input:focus {
   outline: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
 }
 
 /* Phone Input */
 .phone-input-wrapper {
   display: flex;
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .phone-prefix {
@@ -232,12 +275,17 @@
   padding: 16px;
   background: #f5f5f5;
   border-right: 1px solid #e0e0e0;
-  font-weight: 500;
+  font-weight: 600;
   color: #333;
 }
 
-.flag-icon {
-  font-size: 1.2rem;
+.flag-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #000;
+  color: #ffe413;
+  padding: 3px 6px;
+  border-radius: 4px;
 }
 
 .phone-input-wrapper input {
@@ -249,18 +297,19 @@
 
 .phone-input-wrapper input:focus {
   box-shadow: none;
+  transform: none;
 }
 
 /* File Upload */
 .file-field {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .file-description {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #333;
-  line-height: 1.5;
-  margin-bottom: 16px;
+  line-height: 1.6;
+  margin-bottom: 14px;
 }
 
 .btn-add-files {
@@ -272,7 +321,7 @@
   color: #fff;
   border: none;
   border-radius: 25px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -291,8 +340,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   margin-left: 10px;
   background: rgba(0, 0, 0, 0.1);
   color: #333;
@@ -309,22 +358,22 @@
 
 /* Submit Button */
 .btn-submit {
-  padding: 16px 40px;
-  background: #333;
-  color: #fff;
+  padding: 18px 40px;
+  background: #000;
+  color: #ffe413;
   border: none;
   border-radius: 30px;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 8px;
 }
 
 .btn-submit:hover:not(:disabled) {
-  background: #000;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  background: #222;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .btn-submit:disabled {
@@ -338,6 +387,7 @@
   color: #555;
   line-height: 1.6;
   margin-top: 8px;
+  text-align: center;
 }
 
 .form-disclaimer a {
@@ -354,15 +404,16 @@
 /* Success State */
 .contact-success {
   text-align: center;
-  padding: 60px 40px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
+  padding: 50px 30px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
 }
 
 .success-icon {
-  font-size: 80px;
-  color: #2e7d32;
-  margin-bottom: 20px;
+  font-size: 5rem;
+  display: block;
+  margin-bottom: 16px;
+  color: #000;
 }
 
 .contact-success h3 {
@@ -378,64 +429,89 @@
 }
 
 .btn-reset {
-  padding: 12px 30px;
-  background: #333;
-  color: #fff;
+  padding: 14px 32px;
+  background: #000;
+  color: #ffe413;
   border: none;
   border-radius: 25px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btn-reset:hover {
-  background: #000;
+  background: #222;
+  transform: translateY(-2px);
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .contact-container {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 40px;
+  }
+
+  .contact-right {
+    order: 1;
   }
 
   .contact-left {
+    order: 2;
+    padding-left: 0;
     padding-right: 0;
     text-align: center;
   }
 
   .contact-benefits {
-    max-width: 500px;
+    max-width: 450px;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .benefit-item {
+    text-align: left;
+  }
+
   .contact-headline {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+  }
+
+  .contact-right {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 768px) {
   .contact-page {
-    padding: 100px 20px 40px;
+    padding: 90px 16px 40px;
   }
 
   .contact-container {
-    gap: 40px;
+    gap: 32px;
+    margin-top: 20px;
   }
 
   .contact-headline {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .contact-right {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .form-header h3 {
+    font-size: 1.2rem;
   }
 
   .benefit-item {
-    padding: 10px 12px;
+    padding: 12px 14px;
   }
 
-  .benefit-icon {
-    font-size: 24px;
-    padding: 8px;
+  .benefit-emoji {
+    font-size: 1.5rem;
   }
 
   .form-field input {
@@ -443,18 +519,23 @@
   }
 
   .btn-submit {
-    padding: 14px 30px;
+    padding: 16px 30px;
     font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .contact-page {
-    padding: 90px 16px 30px;
+    padding: 85px 12px 30px;
   }
 
   .contact-headline {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
+  }
+
+  .tagline-badge {
+    font-size: 0.8rem;
+    padding: 8px 16px;
   }
 
   .phone-prefix {
@@ -462,7 +543,7 @@
   }
 
   .contact-benefits {
-    gap: 12px;
+    gap: 10px;
   }
 
   .benefit-content h4 {
@@ -471,5 +552,17 @@
 
   .benefit-content p {
     font-size: 0.8rem;
+  }
+
+  .contact-right {
+    padding: 20px 16px;
+  }
+
+  .form-header {
+    justify-content: center;
+  }
+
+  .btn-submit {
+    width: 100%;
   }
 }

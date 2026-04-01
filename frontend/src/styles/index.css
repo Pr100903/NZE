@@ -1623,33 +1623,38 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary);
 }
 
-.newsletter-form {
-  display: flex;
+.footer-cta {
+  max-width: 280px;
 }
 
-.newsletter-input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: var(--white);
-  font-family: inherit;
-}
-
-.newsletter-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.newsletter-btn {
-  padding: 0.75rem 1.5rem;
+.footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
   background: var(--primary);
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
+  color: var(--black);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
-.newsletter-btn:hover {
-  opacity: 0.9;
+.footer-cta-btn:hover {
+  background: var(--white);
+  transform: translateX(5px);
+}
+
+.footer-cta-btn .material-symbols-outlined {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-cta-btn:hover .material-symbols-outlined {
+  transform: translateX(3px);
 }
 
 .footer-bottom {
@@ -4669,9 +4674,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .onenz-partnership-section {
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, #0a8a6e 0%, #065f4c 50%, #043d32 100%);
+  background: var(--gray);
   position: relative;
   overflow: hidden;
+  border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--primary);
 }
 
 .onenz-partnership-section::before {
@@ -4681,7 +4688,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 50%, rgba(255, 228, 19, 0.05) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -4717,7 +4724,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 280px;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
+  filter: drop-shadow(0 0 20px rgba(255, 228, 19, 0.3));
 }
 
 @media (min-width: 900px) {
@@ -4731,7 +4738,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .onenz-partnership-text p {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--white);
   font-size: 1.1rem;
   line-height: 1.8;
   text-align: center;

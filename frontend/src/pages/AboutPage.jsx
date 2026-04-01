@@ -2,42 +2,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
 
-const OneNZPartnershipSection = () => {
-  return (
-    <section className="onenz-partnership-section">
-      <div className="container">
-        <div className="onenz-partnership-content">
-          <AnimatedSection direction="left">
-            <a 
-              href="https://one.nz" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="onenz-logo-link"
-            >
-              <img 
-                src="/assets/logos/OneNZ.png" 
-                alt="One NZ" 
-                className="onenz-partnership-logo"
-              />
-            </a>
-          </AnimatedSection>
-          
-          <AnimatedSection direction="right" delay={0.2}>
-            <div className="onenz-partnership-text">
-              <p>
-                In partnership with One NZ, we provide business-grade broadband and connectivity 
-                solutions tailored for performance and reliability. Our goal is to simplify connectivity 
-                for businesses by offering trusted plans that support productivity, communication, 
-                and long-term growth.
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const AboutPage = () => {
   const values = [
     {
@@ -56,9 +20,9 @@ const AboutPage = () => {
       description: 'Your business never sleeps, and neither do we. Always here when you need us.'
     },
     {
-      icon: 'eco',
-      title: 'Sustainability',
-      description: 'Committed to powering a brighter future through green energy solutions.'
+      icon: 'balance',
+      title: 'Unbiased Advice',
+      description: 'Independent recommendations focused solely on what\'s best for your business.'
     }
   ];
 
@@ -79,9 +43,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* One NZ Partnership Section */}
-      <OneNZPartnershipSection />
-
       {/* Our Story Section */}
       <section className="about-section about-story">
         <div className="container">
@@ -99,9 +60,8 @@ const AboutPage = () => {
                 </p>
                 <p className="about-text">
                   We were founded to bridge that gap—acting as the expert middleman who fights
-                  for your bottom line. As a specialist utility broker and a proud acquisition
-                  partner for One.nz, we provide a single point of contact for your most
-                  critical business connections.
+                  for your bottom line. As a specialist utility broker, we provide a single 
+                  point of contact for your most critical business connections.
                 </p>
               </div>
             </AnimatedSection>
@@ -171,7 +131,7 @@ const AboutPage = () => {
                 "My vision for NZ Essentials is to create a 'One Connection' ecosystem
                 where business owners can completely outsource their utility worries.
                 We don't just want to lower your bills; we want to empower your growth.
-                By combining the scale of providers like One.nz with our boutique negotiation
+                By combining the scale of leading providers with our boutique negotiation
                 expertise, we ensure that every Kiwi business—no matter the size—gets the
                 premium rates and 24/7 support they deserve."
               </blockquote>

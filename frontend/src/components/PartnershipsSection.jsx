@@ -58,7 +58,7 @@ const PartnershipsSection = () => {
       title: 'HOSPITALITY',
       challenge: 'Constant oven use and refrigeration were driving up peak-time energy costs.',
       impact: 'Secured a fixed-term electricity rate and high-speed One.nz business broadband.',
-      result: '$2,800 net annual savings and zero downtime for online ordering systems.'
+      result: '$5,600 net annual savings and zero downtime for online ordering systems.'
     },
     {
       icon: 'monitor_heart',

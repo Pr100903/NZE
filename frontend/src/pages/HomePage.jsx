@@ -1,5 +1,6 @@
 import {
   Hero,
+  OneNZPartnershipSection,
   TrustedBySection,
   ServicesGridSection,
   PowerBillSection,
@@ -11,6 +12,7 @@ const HomePage = () => {
   return (
     <>
       <Hero />
+      <OneNZPartnershipSection />
       <TrustedBySection />
       <ServicesGridSection />
       <PowerBillSection />
