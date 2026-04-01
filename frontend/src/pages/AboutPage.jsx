@@ -70,7 +70,7 @@ const AboutPage = () => {
             <AnimatedSection direction="right" delay={0.2}>
               <div className="about-visual">
                 <div className="about-stat-card">
-                  <span className="stat-number">6+</span>
+                  <span className="stat-number">8+</span>
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="about-stat-card highlight">
@@ -109,7 +109,7 @@ const AboutPage = () => {
                 </h2>
                 <p className="about-text">
                   The company is led by Vipin Yadav, a veteran of the energy sector with over
-                  6 years of hands-on experience in utility management and negotiation.
+                  10 years of hands-on experience in utility management and negotiation.
                 </p>
                 <p className="about-text">
                   Having seen the inner workings of energy retail, Vipin recognized a need for
