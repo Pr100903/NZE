@@ -25,9 +25,31 @@ const Hero = () => {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      video.play().catch(() => {});
+    if (!video) return;
+
+    // Ensure video is loaded before playing
+    const playVideo = () => {
+      video.play().catch((error) => {
+        console.log('Video autoplay prevented:', error);
+        // Fallback: show video anyway even if autoplay fails
+        setVideoLoaded(true);
+      });
+    };
+
+    // If video is already loaded, play immediately
+    if (video.readyState >= 3) {
+      playVideo();
+    } else {
+      // Otherwise wait for it to be ready
+      video.addEventListener('canplay', playVideo, { once: true });
     }
+
+    // Cleanup function
+    return () => {
+      if (video) {
+        video.removeEventListener('canplay', playVideo);
+      }
+    };
   }, []);
 
   // Memoized mouse move handler
@@ -68,13 +90,8 @@ const Hero = () => {
   const features = useMemo(() => [
     { icon: 'savings', text: 'Lower Energy Bills', animation: 'bounce' },
     { icon: 'support_agent', text: '24/7 Support', animation: 'pulse' },
-    { icon: 'hub', text: 'Unified Connectivity', animation: 'rotate' }
-  ], []);
-
-  const trustLogos = useMemo(() => [
-    'Official One.nz Partner',
-    'Trusted by 500+ businesses',
-    '5% Admin Fee Only'
+    { icon: 'hub', text: 'Unified Connectivity', animation: 'rotate' },
+    { icon: 'tune', text: 'Personalised Energy Solutions', animation: 'bounce' }
   ], []);
 
   return (
@@ -101,12 +118,17 @@ const Hero = () => {
           playsInline
           preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
+          onError={() => {
+            console.error('Video failed to load');
+            setVideoLoaded(true); // Show overlay even if video fails
+          }}
           style={{
             opacity: videoLoaded ? 1 : 0,
             transition: 'opacity 1.5s ease-in-out'
           }}
         >
           <source src="/assets/Hero3.webm" type="video/webm" />
+          <source src="/assets/Hero3.mp4" type="video/mp4" />
         </video>
       </motion.div>
 
@@ -195,18 +217,6 @@ const Hero = () => {
             </Link>
           </motion.div>
 
-          {/* Trust Strip */}
-          <motion.div
-            className="hero-trust-strip"
-            variants={itemVariants}
-          >
-            {trustLogos.map((text, index) => (
-              <div key={index} className="trust-item">
-                <span className="material-symbols-outlined">verified</span>
-                <span>{text}</span>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </motion.div>
 
