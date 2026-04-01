@@ -2876,6 +2876,26 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1rem;
 }
 
+/* Service detail buttons container */
+.service-detail-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Explore More button style */
+.service-explore-btn {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.service-explore-btn:hover {
+  background: var(--primary);
+  color: var(--black);
+}
+
 /* ============================================
    POWER BILL COMPARISON SECTION
    ============================================ */
@@ -3893,6 +3913,14 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   min-width: 180px;
   height: 70px;
+  position: relative;
+}
+
+/* Neon yellow glow around logos for visibility */
+.logo-marquee-item .brand-logo-img {
+  filter: drop-shadow(0 0 8px rgba(255, 228, 19, 0.7)) 
+          drop-shadow(0 0 15px rgba(255, 228, 19, 0.5)) 
+          drop-shadow(0 0 25px rgba(255, 228, 19, 0.3));
 }
 
 .brand-logo-placeholder {
@@ -4633,6 +4661,87 @@ h1, h2, h3, h4, h5, h6 {
 
 .cta-btn .material-symbols-outlined {
   font-size: 1.2rem;
+}
+
+/* ============================================
+   ONE NZ PARTNERSHIP SECTION
+   ============================================ */
+
+.onenz-partnership-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #0a8a6e 0%, #065f4c 50%, #043d32 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.onenz-partnership-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.onenz-partnership-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  .onenz-partnership-content {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+
+.onenz-logo-link {
+  display: block;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.onenz-logo-link:hover {
+  transform: scale(1.05);
+}
+
+.onenz-partnership-logo {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
+}
+
+@media (min-width: 900px) {
+  .onenz-partnership-logo {
+    max-width: 350px;
+  }
+}
+
+.onenz-partnership-text {
+  flex: 1;
+}
+
+.onenz-partnership-text p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .onenz-partnership-text p {
+    font-size: 1.25rem;
+    text-align: left;
+  }
 }
 
 /* ============================================

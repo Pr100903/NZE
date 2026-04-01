@@ -38,11 +38,11 @@ const FAQPage = () => {
       faqs: [
         {
           question: "How does the partnership with One.nz work?",
-          answer: "We are an Official Acquisition Partner for One.nz, the leading provider of mobile and broadband in New Zealand. Because of this official status, we help businesses set up their telecommunications at no extra cost. We do not charge our 5% administration fee on One.nz mobile or broadband services."
+          answer: "We are an Official Acquisition Partner for One.nz, the leading provider of mobile and broadband in New Zealand. Because of this official status, we help businesses set up their telecommunications at no extra cost. We do not charge our service administration fee on One.nz mobile or broadband services."
         },
         {
-          question: "If you charge a 5% fee, am I really saving money?",
-          answer: "Yes. Our 5% administration fee applies only to energy/gas accounts where we have negotiated a significantly lower rate than the standard market price. Even after our fee is applied, the net total you pay is designed to be lower than what you would pay by going direct. Essentially, our expertise pays for itself through the savings we generate."
+          question: "If you charge a service fee, am I really saving money?",
+          answer: "Yes. Our service administration fee applies only to energy/gas accounts where we have negotiated a significantly lower rate than the standard market price. Even after our fee is applied, the net total you pay is designed to be lower than what you would pay by going direct. Essentially, our expertise pays for itself through the savings we generate."
         }
       ]
     },

@@ -2,6 +2,42 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
 
+const OneNZPartnershipSection = () => {
+  return (
+    <section className="onenz-partnership-section">
+      <div className="container">
+        <div className="onenz-partnership-content">
+          <AnimatedSection direction="left">
+            <a 
+              href="https://one.nz" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="onenz-logo-link"
+            >
+              <img 
+                src="/assets/logos/OneNZ.png" 
+                alt="One NZ" 
+                className="onenz-partnership-logo"
+              />
+            </a>
+          </AnimatedSection>
+          
+          <AnimatedSection direction="right" delay={0.2}>
+            <div className="onenz-partnership-text">
+              <p>
+                In partnership with One NZ, we provide business-grade broadband and connectivity 
+                solutions tailored for performance and reliability. Our goal is to simplify connectivity 
+                for businesses by offering trusted plans that support productivity, communication, 
+                and long-term growth.
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const AboutPage = () => {
   const values = [
     {
@@ -37,11 +73,14 @@ const AboutPage = () => {
               Your Partner in <span>Utility Management</span>
             </h1>
             <p className="about-hero-subtitle">
-              Fighting for your bottom line since day one
+              Helping you save on energy costs since day one
             </p>
           </AnimatedSection>
         </div>
       </section>
+
+      {/* One NZ Partnership Section */}
+      <OneNZPartnershipSection />
 
       {/* Our Story Section */}
       <section className="about-section about-story">
@@ -51,7 +90,7 @@ const AboutPage = () => {
               <div className="about-content">
                 <span className="about-section-label">Our Story</span>
                 <h2 className="about-section-title">
-                  Bridging the Gap Between <span>Businesses and Savings</span>
+                <span>Bridging the Gap Between Businesses and Savings</span>
                 </h2>
                 <p className="about-text">
                   At NZ Essentials, we believe that New Zealand businesses shouldn't have to
@@ -108,13 +147,13 @@ const AboutPage = () => {
                   Led by <span>Industry Expertise</span>
                 </h2>
                 <p className="about-text">
-                  The company is led by Vipin Yadav, a veteran of the energy sector with over
-                  10 years of hands-on experience in utility management and negotiation.
+                  Our company is led by industry expertise with over 10 years of hands-on 
+                  experience in energy management and client relations.
                 </p>
                 <p className="about-text">
-                  Having seen the inner workings of energy retail, Vipin recognized a need for
-                  a more transparent, client-focused brokerage model that prioritizes real-world
-                  savings over corporate jargon.
+                  Our team has worked within the energy industry and saw the need for a more 
+                  transparent approach that puts clients first and focuses on real savings 
+                  instead of confusing corporate jargon.
                 </p>
               </div>
             </AnimatedSection>

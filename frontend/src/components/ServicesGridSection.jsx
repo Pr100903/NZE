@@ -12,7 +12,7 @@ const ServicesGridSection = () => {
       title: 'Electricity',
       shortDesc: 'Competitive energy rates',
       description: 'Competitive rates negotiated with top NZ energy retailers. Lock in prices and protect against market volatility.',
-      benefits: ['Up to 25% savings', 'Fixed-term contracts', 'No switching hassle'],
+      benefits: ['Up to 20% savings', 'Fixed and flexible terms option available', 'No switching hassle'],
       color: '#ffe413'
     },
     {
@@ -29,15 +29,17 @@ const ServicesGridSection = () => {
       shortDesc: 'Business mobile plans',
       description: 'Business mobile plans via One.nz partnership. Premium coverage with zero service fees from us.',
       benefits: ['Zero service fees', 'Premium coverage', 'One.nz partner'],
-      color: '#4ecdc4'
+      color: '#4ecdc4',
+      exploreLink: 'https://one.nz/business/mobile/#'
     },
     {
       icon: 'wifi',
       title: 'Broadband',
       shortDesc: 'High-speed connectivity',
-      description: 'Fibre, wireless, and satellite connectivity. Choose the right solution for your location and team size.',
-      benefits: ['Fibre & 5G options', 'Location-based', 'Quick setup'],
-      color: '#45b7d1'
+      description: 'Fibre, wireless, and satellite connectivity through our One.nz partnership. Choose the right solution for your location and team size.',
+      benefits: ['Fibre & wireless options', 'One.nz partnership', 'Quick setup'],
+      color: '#45b7d1',
+      exploreLink: 'https://one.nz/business/broadband/'
     },
     {
       icon: 'solar_power',
@@ -92,10 +94,23 @@ const ServicesGridSection = () => {
                 </motion.li>
               ))}
             </ul>
-            <Link to="/contact" className="service-detail-btn">
-              Get Started
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </Link>
+            <div className="service-detail-buttons">
+              <Link to="/contact" className="service-detail-btn">
+                Get Started
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </Link>
+              {service.exploreLink && (
+                <a 
+                  href={service.exploreLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="service-detail-btn service-explore-btn"
+                >
+                  Explore More
+                  <span className="material-symbols-outlined">open_in_new</span>
+                </a>
+              )}
+            </div>
           </div>
         </motion.div>
       )}
@@ -202,10 +217,23 @@ const ServicesGridSection = () => {
                   ))}
                 </ul>
 
-                <Link to="/contact" className="service-detail-btn">
-                  Get Started
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </Link>
+                <div className="service-detail-buttons">
+                  <Link to="/contact" className="service-detail-btn">
+                    Get Started
+                    <span className="material-symbols-outlined">arrow_forward</span>
+                  </Link>
+                  {services[activeService].exploreLink && (
+                    <a 
+                      href={services[activeService].exploreLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="service-detail-btn service-explore-btn"
+                    >
+                      Explore More
+                      <span className="material-symbols-outlined">open_in_new</span>
+                    </a>
+                  )}
+                </div>
               </motion.div>
             </AnimatePresence>
 

@@ -91,7 +91,7 @@ const BlogPost1 = () => {
               <p>
                 Retailers often reserve their best "unlisted" rates for brokers who bring them 
                 high-volume business. We negotiate these rates on your behalf, ensuring that even 
-                after our 5% admin fee, your net savings are significantly higher than going direct.
+                after our service admin fee, your net savings are significantly higher than going direct.
               </p>
             </div>
 
@@ -112,7 +112,7 @@ const BlogPost1 = () => {
                 </li>
                 <li>
                   <span className="material-symbols-outlined">check_circle</span>
-                  Net savings even after our 5% admin fee
+                  Net savings even after our service administration fee
                 </li>
               </ul>
             </div>
