@@ -6,6 +6,7 @@ const Hero = () => {
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   // Mouse parallax with memoized spring config
   const mouseX = useMotionValue(0);
@@ -27,28 +28,49 @@ const Hero = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Ensure video is loaded before playing
-    const playVideo = () => {
+    const handleCanPlay = () => {
+      setVideoLoaded(true);
       video.play().catch((error) => {
         console.log('Video autoplay prevented:', error);
-        // Fallback: show video anyway even if autoplay fails
-        setVideoLoaded(true);
       });
     };
 
-    // If video is already loaded, play immediately
+    const handleLoadedData = () => {
+      setVideoLoaded(true);
+    };
+
+    const handleError = () => {
+      console.error('Video failed to load');
+      setVideoError(true);
+      setVideoLoaded(true); // Show content anyway
+    };
+
+    // Add event listeners
+    video.addEventListener('canplaythrough', handleCanPlay);
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('error', handleError);
+
+    // Force load the video
+    video.load();
+
+    // If video is already loaded (cached), handle it
     if (video.readyState >= 3) {
-      playVideo();
-    } else {
-      // Otherwise wait for it to be ready
-      video.addEventListener('canplay', playVideo, { once: true });
+      setVideoLoaded(true);
+      video.play().catch(() => {});
     }
 
-    // Cleanup function
-    return () => {
-      if (video) {
-        video.removeEventListener('canplay', playVideo);
+    // Fallback: show video after 3 seconds regardless
+    const fallbackTimer = setTimeout(() => {
+      if (!videoLoaded) {
+        setVideoLoaded(true);
       }
+    }, 3000);
+
+    return () => {
+      video.removeEventListener('canplaythrough', handleCanPlay);
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('error', handleError);
+      clearTimeout(fallbackTimer);
     };
   }, []);
 
@@ -117,19 +139,25 @@ const Hero = () => {
           loop
           playsInline
           preload="auto"
-          onLoadedData={() => setVideoLoaded(true)}
-          onError={() => {
-            console.error('Video failed to load');
-            setVideoLoaded(true); // Show overlay even if video fails
-          }}
           style={{
             opacity: videoLoaded ? 1 : 0,
-            transition: 'opacity 1.5s ease-in-out'
+            transition: 'opacity 1s ease-in-out'
           }}
         >
-          <source src="/assets/Hero3.webm" type="video/webm" />
           <source src="/assets/Hero3.mp4" type="video/mp4" />
+          <source src="/assets/Hero3.webm" type="video/webm" />
         </video>
+        {/* Fallback background if video fails */}
+        {videoError && (
+          <div 
+            className="hero-video-fallback"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, #1a1a1a 0%, #000 100%)'
+            }}
+          />
+        )}
       </motion.div>
 
       {/* Premium Gradient Overlay */}

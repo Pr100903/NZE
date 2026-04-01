@@ -28,18 +28,20 @@ const ServicesGridSection = () => {
       title: 'Mobile',
       shortDesc: 'Business mobile plans',
       description: 'Business mobile plans via One.nz partnership. Premium coverage with zero service fees from us.',
-      benefits: ['Zero service fees', 'Premium coverage', 'One.nz partner'],
+      benefits: ['Satellite-to-Mobile Connectivity', 'Endless Data Plans', 'Premium coverage', 'Zero service fees'],
       color: '#4ecdc4',
-      exploreLink: 'https://one.nz/business/mobile/#'
+      exploreLink: 'https://one.nz/business/mobile/#',
+      partnerLogo: '/assets/logos/OneNZ.png'
     },
     {
       icon: 'wifi',
       title: 'Broadband',
       shortDesc: 'High-speed connectivity',
       description: 'Fibre, wireless, and satellite connectivity through our One.nz partnership. Choose the right solution for your location and team size.',
-      benefits: ['Fibre & wireless options', 'One.nz partnership', 'Quick setup'],
+      benefits: ['Fibre & wireless options', 'Quick setup', 'Premium coverage'],
       color: '#45b7d1',
-      exploreLink: 'https://one.nz/business/broadband/'
+      exploreLink: 'https://one.nz/business/broadband/',
+      partnerLogo: '/assets/logos/OneNZ.png'
     },
     {
       icon: 'solar_power',
@@ -94,6 +96,18 @@ const ServicesGridSection = () => {
                 </motion.li>
               ))}
             </ul>
+            {service.partnerLogo && (
+              <div className="service-partner-badge">
+                <span>Official Partner</span>
+                <a href="https://one.nz" target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src={service.partnerLogo} 
+                    alt="One NZ Partner" 
+                    className="service-partner-logo"
+                  />
+                </a>
+              </div>
+            )}
             <div className="service-detail-buttons">
               <Link to="/contact" className="service-detail-btn">
                 Get Started
@@ -216,6 +230,19 @@ const ServicesGridSection = () => {
                     </motion.li>
                   ))}
                 </ul>
+
+                {services[activeService].partnerLogo && (
+                  <div className="service-partner-badge">
+                    <span>Official Partner</span>
+                    <a href="https://one.nz" target="_blank" rel="noopener noreferrer">
+                      <img 
+                        src={services[activeService].partnerLogo} 
+                        alt="One NZ Partner" 
+                        className="service-partner-logo"
+                      />
+                    </a>
+                  </div>
+                )}
 
                 <div className="service-detail-buttons">
                   <Link to="/contact" className="service-detail-btn">

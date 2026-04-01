@@ -132,6 +132,15 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Enhance video quality - sharper, more contrast, reduce noise perception */
+  filter: contrast(1.08) brightness(1.02) saturate(1.1);
+  /* Force high-quality rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  /* Smooth out compression artifacts */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Premium Gradient Overlay - Left to Right (stronger left) */
@@ -2889,6 +2898,39 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1rem;
 }
 
+/* Partner badge */
+.service-partner-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 1.25rem;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.service-partner-badge span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.service-partner-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.1);
+  transition: transform 0.3s ease;
+}
+
+.service-partner-badge a:hover .service-partner-logo {
+  transform: scale(1.05);
+}
+
 /* Explore More button style */
 .service-explore-btn {
   background: transparent;
@@ -3921,11 +3963,16 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-/* Neon yellow glow around logos for visibility */
+/* Compact white background for logo visibility on dark strip */
 .logo-marquee-item .brand-logo-img {
-  filter: drop-shadow(0 0 8px rgba(255, 228, 19, 0.7)) 
-          drop-shadow(0 0 15px rgba(255, 228, 19, 0.5)) 
-          drop-shadow(0 0 25px rgba(255, 228, 19, 0.3));
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.logo-marquee-item:hover .brand-logo-img {
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.2);
 }
 
 .brand-logo-placeholder {
@@ -3956,14 +4003,6 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: grayscale(0%);
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.logo-marquee-item:hover .brand-logo-img {
-  filter: grayscale(0%);
-  opacity: 1;
 }
 
 .logo-marquee-item[data-brand="Mercury"] .brand-logo-img {
@@ -4742,6 +4781,20 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.1rem;
   line-height: 1.8;
   text-align: center;
+}
+
+.onenz-highlight-link {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 3px solid #22c55e;
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+.onenz-highlight-link:hover {
+  color: #22c55e;
+  border-bottom-color: #22c55e;
 }
 
 @media (min-width: 900px) {

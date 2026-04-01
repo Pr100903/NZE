@@ -81,10 +81,11 @@ const PowerBillSection = () => {
               <video
                 ref={videoRef}
                 className="power-bill-discount-video"
-                src="/assets/discount.webm"
+                src="/assets/dis.webm"
                 muted
                 playsInline
                 preload="auto"
+                playbackRate={0.6}
               />
             </motion.div>
           </div>

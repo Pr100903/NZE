@@ -11,7 +11,6 @@ const RetailersSection = () => {
     { name: "Nova", src: '/assets/retailers/nova.svg' },
     { name: "Powershop", src: '/assets/retailers/powershop.png' },
     { name: "Pulseenergy", src: '/assets/retailers/pulseenergy.png' },
-    { name: "OneNZ", src: '/assets/retailers/OneNZ.png' },
   ], []);
 
   // Double the brands for seamless infinite scroll
