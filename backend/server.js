@@ -9,6 +9,15 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3500;
+// Email logo as base64 data URI for universal email client compatibility (SVG for emails)
+const EMAIL_LOGO_SVG_PATH = path.join(__dirname, 'logonz.svg');
+const EMAIL_LOGO_BASE64 = fs.readFileSync(EMAIL_LOGO_SVG_PATH).toString('base64');
+const EMAIL_LOGO_HTML = `<img src="data:image/svg+xml;base64,${EMAIL_LOGO_BASE64}" alt="NZ Essentials" width="150" height="150" style="width: 150px; height: 150px; max-width: 100%; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none; object-fit: contain;" />`;
+
+function getEmailLogoAttachments() {
+  // No CID attachments needed - logo is inline base64
+  return [];
+}
 
 // Configure multer for file uploads
 const storage = multer.memoryStorage();
@@ -156,7 +165,7 @@ app.post('/api/submit-form', async (req, res) => {
     const emailContent = `
       <div style="font-family: 'Anek Latin', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 30px;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <img src="cid:logo" alt="NZ Essentials" style="height: 80px;" />
+          ${EMAIL_LOGO_HTML}
         </div>
         <h2 style="color: #ffe413; margin-bottom: 20px;">Letter of Authority Submission</h2>
         <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #333;">
@@ -187,7 +196,7 @@ app.post('/api/submit-form', async (req, res) => {
       html: `
         <div style="font-family: 'Anek Latin', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 30px;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <img src="cid:logo" alt="NZ Essentials" style="height: 80px;" />
+            ${EMAIL_LOGO_HTML}
           </div>
           <h2 style="color: #ffe413;">Thank You for Joining NZ Essentials!</h2>
           <p>Dear ${data.authPerson},</p>
@@ -214,11 +223,7 @@ app.post('/api/submit-form', async (req, res) => {
           content: pdfBuffer,
           contentType: 'application/pdf'
         },
-        {
-          filename: 'logo.png',
-          path: path.join(__dirname, 'logonz.png'),
-          cid: 'logo'
-        }
+        ...getEmailLogoAttachments()
       ]
     });
 
@@ -234,11 +239,7 @@ app.post('/api/submit-form', async (req, res) => {
           content: pdfBuffer,
           contentType: 'application/pdf'
         },
-        {
-          filename: 'logo.png',
-          path: path.join(__dirname, 'logonz.png'),
-          cid: 'logo'
-        }
+        ...getEmailLogoAttachments()
       ]
     });
 
@@ -271,13 +272,7 @@ app.post('/api/contact', upload.single('powerBill'), async (req, res) => {
     }
 
     // Prepare attachments - include logo for email
-    const attachments = [
-      {
-        filename: 'logo.png',
-        path: path.join(__dirname, 'logonz.png'),
-        cid: 'logo'
-      }
-    ];
+    const attachments = [...getEmailLogoAttachments()];
     if (file) {
       attachments.push({
         filename: file.originalname,
@@ -290,7 +285,7 @@ app.post('/api/contact', upload.single('powerBill'), async (req, res) => {
     const adminEmailContent = `
       <div style="font-family: 'Anek Latin', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 30px;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <img src="cid:logo" alt="NZ Essentials" style="height: 80px;" />
+          ${EMAIL_LOGO_HTML}
         </div>
         <h2 style="color: #ffe413; margin-bottom: 20px;">New Contact Form Submission</h2>
         <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #333;">
