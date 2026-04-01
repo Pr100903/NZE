@@ -65,6 +65,12 @@ async function generateLOAPDF(data) {
   // Read the format.html template
   let htmlTemplate = fs.readFileSync(path.join(__dirname, 'format.html'), 'utf8');
   
+  // Replace logo with base64 embedded image
+  htmlTemplate = htmlTemplate.replace(
+    /src="logonz\.png"/g,
+    `src="${LOGO_BASE64}"`
+  );
+  
   // Replace template variables
   htmlTemplate = htmlTemplate
     .replace(/{{ authorisedPerson }}/g, data.authPerson || '')
@@ -192,7 +198,7 @@ app.post('/api/submit-form', async (req, res) => {
             <ul style="color: #ccc;">
               <li>Our team will review your submission</li>
               <li>We'll analyze your energy requirements</li>
-              <li>You'll receive customized proposals within 48 hours</li>
+              <li>You'll receive customized proposals very soon</li>
             </ul>
           </div>
           <p>If you have any questions, please don't hesitate to contact us.</p>
@@ -207,6 +213,11 @@ app.post('/api/submit-form', async (req, res) => {
           filename: fileName,
           content: pdfBuffer,
           contentType: 'application/pdf'
+        },
+        {
+          filename: 'logo.png',
+          path: path.join(__dirname, 'logonz.png'),
+          cid: 'logo'
         }
       ]
     });
@@ -222,6 +233,11 @@ app.post('/api/submit-form', async (req, res) => {
           filename: fileName,
           content: pdfBuffer,
           contentType: 'application/pdf'
+        },
+        {
+          filename: 'logo.png',
+          path: path.join(__dirname, 'logonz.png'),
+          cid: 'logo'
         }
       ]
     });
@@ -254,8 +270,14 @@ app.post('/api/contact', upload.single('powerBill'), async (req, res) => {
       });
     }
 
-    // Prepare attachments
-    const attachments = [];
+    // Prepare attachments - include logo for email
+    const attachments = [
+      {
+        filename: 'logo.png',
+        path: path.join(__dirname, 'logonz.png'),
+        cid: 'logo'
+      }
+    ];
     if (file) {
       attachments.push({
         filename: file.originalname,
@@ -268,7 +290,7 @@ app.post('/api/contact', upload.single('powerBill'), async (req, res) => {
     const adminEmailContent = `
       <div style="font-family: 'Anek Latin', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 30px;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <h1 style="color: #ffe413;">NZ Essentials</h1>
+          <img src="cid:logo" alt="NZ Essentials" style="height: 80px;" />
         </div>
         <h2 style="color: #ffe413; margin-bottom: 20px;">New Contact Form Submission</h2>
         <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #333;">
